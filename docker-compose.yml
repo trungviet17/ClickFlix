@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  db:
+    image: mariadb:11.3.2
+    container_name: mariadb
+    # restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: clickflix
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: 123456
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./data:/var/lib/mysql
+    healthcheck:
+      interval: 5s
+      retries: 3
+      test:
+        [
+          "CMD",
+          "healthcheck.sh",
+          "--su-mysql",
+          "--connect",
+          "--innodb_initialized"
+        ]
+      timeout: 30s
+  
+  adminer:
+    image: adminer
+    container_name: adminer
+    # restart: always
+    environment:
+      ADMINER_DEFAULT_SERVER: db
+      ADMINER_DEFAULT_USERNAME: admin
+      ADMINER_DEFAULT_PASSWORD: 123456
+    ports:
+      - "8080:8080"

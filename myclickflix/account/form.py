@@ -10,7 +10,7 @@ class UserRegistrationForm(forms.ModelForm):
 
     class Meta: 
         model = User
-        fields  = ['username', 'firstname', 'email']
+        fields  = ['username', 'first_name', 'email']
 
     """Hàm kiểm tra """
     def clean_password(self): 
@@ -48,7 +48,7 @@ class UserEditForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm) : 
     class Meta: 
         model = Profile
-        fields = ['date_of_birth', 'name']
+        fields = ['date_of_birth', 'user']
 
 
 

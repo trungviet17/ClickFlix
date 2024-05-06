@@ -7,8 +7,9 @@
   <h1>Create an account</h1>
   
   <form method="post">
-    {{ user_form.as_p }}
+    {{ userform.as_p }}
     {% csrf_token %}
     <p><input type="submit" value="Create my account"></p>
   </form>
+  
 {% endblock %}

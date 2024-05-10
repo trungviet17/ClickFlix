@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>{%  block title %} {% endblock %}</title>
+        {% load static %}
+        <link rel="icon" type="image/png" href="{% static 'images/favicon/favicon-16x16.png' %}" />
+        <link rel="stylesheet" href="{% static 'lib/css/swiper-bundle.min.css' %}" />
+        <link rel="stylesheet" href="{% static 'lib/css/bvselect.css' %}" />
+        <link rel="stylesheet" href="{% static 'lib/css/venobox.css' %}" />
+        <link rel="stylesheet" href="{% static 'lib/css/bootstrap.min.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    </head>
+
+    <body>
+        <div class="loader">
+            <div class="loader-icon">
+                <img src="{% static 'images/loader.gif' %}" alt="loader" />
+            </div>
+        </div>
+        {%  block content %}
+        {% endblock %}
+    </body>
+</html>

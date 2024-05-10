@@ -37,3 +37,16 @@ services:
       ADMINER_DEFAULT_PASSWORD: 123456
     ports:
       - "8080:8080"
+
+  web:
+    build: ./myclickflix
+    image: myclickflix
+    container_name: myclickflix
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./myclickflix:/app
+    ports:
+      - 8000:8000
+    depends_on:
+      db:
+        condition: service_healthy

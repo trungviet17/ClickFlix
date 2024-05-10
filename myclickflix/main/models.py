@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 
 
 class TimeStampMixin(models.Model):
@@ -23,16 +24,19 @@ class Category(TimeStampMixin):
 
     def __str__(self) -> str:
         return self.name
+    
+    def save(self, *args, **kwargs) : 
+        if not self.slug : 
+            self.slug = slugify(self.name + str(self.pk))
+        super(Category, self).save(*args, **kwargs)
+
 
 
 class Actor(TimeStampMixin):
     name = models.CharField(max_length=50)
     birthday = models.DateField()
     bio = models.TextField()
-    image = models.ImageField(
-        upload_to='actor/%Y/%M/%D',
-        blank=True
-    )
+    image = models.TextField()
     slug = models.SlugField(max_length=50, unique=True)
 
     class Meta:
@@ -45,6 +49,12 @@ class Actor(TimeStampMixin):
 
     def __str__(self) -> str:
         return self.name
+    
+
+    def save(self, *args, **kwargs): 
+        if not self.slug : 
+            self.slug = slugify(self.name + str(self.pk))
+        super(Actor, self).save(*args, **kwargs)
 
 
 class Movie(TimeStampMixin):
@@ -65,10 +75,7 @@ class Movie(TimeStampMixin):
     language = models.CharField(max_length=5)
     released = models.DateField()
     available = models.BooleanField(default=True)
-    image = models.ImageField(
-        upload_to='movies/%Y/%M/%D',
-        blank=True
-    )
+    image = models.TextField()
     actors = models.ManyToManyField(Actor, related_name='movies')
 
     class Meta:
@@ -83,6 +90,11 @@ class Movie(TimeStampMixin):
 
     def __str__(self) -> str:
         return self.title
+    
+    def save(self, *args, **kwargs): 
+        if not self.slug : 
+            self.slug = slugify(self.title + str(self.pk))
+        super(Movie, self).save(*args, **kwargs)
 
 
 # class MovieActor(models.Model):

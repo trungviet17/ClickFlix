@@ -1,7 +1,11 @@
 from django.db import models
 from django.utils.text import slugify
 
+from typing import List
+import json
 
+
+# Create your models here.
 class TimeStampMixin(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -24,12 +28,11 @@ class Category(TimeStampMixin):
 
     def __str__(self) -> str:
         return self.name
-    
-    def save(self, *args, **kwargs) : 
-        if not self.slug : 
-            self.slug = slugify(self.name + str(self.pk))
-        super(Category, self).save(*args, **kwargs)
 
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name + " " + str(self.pk))
+        super(Category, self).save(*args, **kwargs)
 
 
 class Actor(TimeStampMixin):
@@ -49,20 +52,15 @@ class Actor(TimeStampMixin):
 
     def __str__(self) -> str:
         return self.name
-    
 
-    def save(self, *args, **kwargs): 
-        if not self.slug : 
-            self.slug = slugify(self.name + str(self.pk))
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name + " " + str(self.pk))
         super(Actor, self).save(*args, **kwargs)
 
 
 class Movie(TimeStampMixin):
-    category = models.ForeignKey(
-        Category,
-        related_name='movies',
-        on_delete=models.PROTECT
-    )
+
     title = models.CharField(max_length=200)
     slug = models.CharField(max_length=200, unique=True)
     overview = models.TextField()
@@ -75,8 +73,11 @@ class Movie(TimeStampMixin):
     language = models.CharField(max_length=5)
     released = models.DateField()
     available = models.BooleanField(default=True)
-    image = models.TextField()
-    actors = models.ManyToManyField(Actor, related_name='movies')
+    keyword = models.TextField(default="")
+    image = models.TextField(default="")
+
+    actors = models.ManyToManyField(Actor, related_name="movies")
+    categories = models.ManyToManyField(Category, related_name="movies")
 
     class Meta:
         ordering = ['title']
@@ -90,10 +91,13 @@ class Movie(TimeStampMixin):
 
     def __str__(self) -> str:
         return self.title
-    
-    def save(self, *args, **kwargs): 
-        if not self.slug : 
-            self.slug = slugify(self.title + str(self.pk))
+
+    def set_keyword(self, keyword: List[str]):
+        self.keyword = json.dumps(keyword)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title + " " + str(self.pk))
         super(Movie, self).save(*args, **kwargs)
 
 

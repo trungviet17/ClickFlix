@@ -6,14 +6,14 @@ from .models import Category, Movie, Actor
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ['name', 'slug']
+    list_display = ['id', 'name', 'slug']
     prepopulated_fields = {'slug': ('name',)}
 
 
 @admin.register(Movie)
 class MovieAdmin(admin.ModelAdmin):
     list_display = [
-        'title', 'slug', 'overview', 'score', 'popularity',
+        'id', 'title', 'slug', 'score', 'popularity',
         'price', 'language', 'released', 'available', 'image'
     ]
     list_filter = ['available', 'created_at', 'updated_at']

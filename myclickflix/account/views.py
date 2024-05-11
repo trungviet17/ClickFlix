@@ -11,11 +11,12 @@ def register(request) :
     
     if request.method == 'POST': 
         userform  = UserRegistrationForm(request.POST)
-
+        
         if userform.is_valid() : 
 
             new_user = userform.save(commit = False)
             new_user.set_password(userform.cleaned_data['password'])
+            new_user.username = str(userform.cleaned_data['email']).split("@")[0]
             new_user.save()
 
             Profile.objects.create(user = new_user)

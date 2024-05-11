@@ -49,10 +49,12 @@
         <div class="container">
           <div class="form-wrapper">
             <h6 class="font-title--sm">create account</h6>
-            <form action="#">
+            <form method="post">
               <div class="form-input">
-                <!-- TODO: gắn link đến thẻ -->
-                <input type="email" placeholder="Email" />
+                {% csrf_token %}
+                
+
+                <input type="email" placeholder="Email" id="{{ userform.email.id_for_label }}" name="{{userform.email.name }}" value="{{ userform.email.value|default_if_none:'' }}" /> 
                 <span class="icon icon-warning">
                   <svg
                     width="20"
@@ -135,7 +137,8 @@
               </div>
               <div class="form-input">
                 <!-- TODO: gắn link đến thẻ -->
-                <input type="password" placeholder="Password" id="password" />
+                <input type="password" placeholder="Password" id="{{ userform.password.id_for_label }}" name="{{userform.password.name }}" value="{{ userform.password.value|default_if_none:'' }}" /> 
+                
                 <button
                   type="button"
                   class="icon icon-eye"
@@ -246,11 +249,14 @@
               </div>
               <div class="form-input">
                 <!-- TODO: gắn link đến thẻ -->
-                <input
+                <!-- <input
                   type="password"
                   placeholder="Confirm Password"
                   id="confirmPassword"
-                />
+                  name="password2"
+                /> -->
+                <input type="password" placeholder="ConfirmPassword" id="{{ userform.password2.id_for_label }}" name="{{userform.password2.name }}" value="{{ userform.password2.value|default_if_none:'' }}" /> 
+                
                 <button
                   type="button"
                   class="icon icon-eye"
@@ -377,7 +383,7 @@
                 <button class="button button--md w-100">Create Account</button>
               </div>
               <div class="form-register">
-                Already have account ? <a href="sign-in.html">Login</a>
+                Already have account ? <a href="{% url 'login' %}">Login</a>
               </div>
             </form>
           </div>

@@ -32,15 +32,16 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'account.apps.AccountConfig',
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "django_extensions",
 
-    'main.apps.MainConfig',
+    "account.apps.AccountConfig",
+    "main.apps.MainConfig",
 ]
 
 MIDDLEWARE = [
@@ -82,6 +83,15 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+    # "default": {
+    #     "ENGINE": "django.db.backends.mysql",
+    #     "NAME": "clickflix",
+    #     "USER": "admin",
+    #     "PASSWORD": "123456",
+    #     "HOST": "db",
+    #     "PORT": "",
+    #     "OPTIONS": {"charset": "utf8mb4"},
+    # }
 }
 
 

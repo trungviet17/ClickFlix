@@ -140,7 +140,7 @@
                 <button
                     type="button"
                     class="icon icon-eye"
-                    onclick="showPassword('password',this)"
+                    onclick="showPassword('{{ form.password.id_for_label }}',this)"
                 >
                     <svg
                     width="20"
@@ -243,7 +243,7 @@
                     Remember Me
                     </label>
                 </div>
-                <a href="#">Forget Password </a>
+                <a href="{% url 'reset_password' %}">Forget Password </a>
                 </div>
                 <div class="form-button">
                 <!-- TODO: add link -->

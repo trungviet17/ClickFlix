@@ -9,7 +9,11 @@
     <!-- Shopping Cart sidebar  end -->
 
     <!-- Header Section start -->
-    {% include "components/header.html" %}
+    {% if user.is_authenticated %}
+    {% include "components/header_login.html" %}
+    {% else %} 
+    {% include "components/header.html" %} 
+    {% endif %}
     <!-- Header  Section start -->
 
     <!-- Banner  Section Start  -->

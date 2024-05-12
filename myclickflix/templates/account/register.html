@@ -142,7 +142,7 @@
                 <button
                   type="button"
                   class="icon icon-eye"
-                  onclick="showPassword('password',this)"
+                  onclick="showPassword('{{ userform.password.id_for_label }}',this)"
                 >
                   <svg
                     width="20"
@@ -260,7 +260,7 @@
                 <button
                   type="button"
                   class="icon icon-eye"
-                  onclick="showPassword('confirmPassword',this)"
+                  onclick="showPassword('{{ userform.password2.id_for_label }}',this)"
                 >
                   <svg
                     width="20"
@@ -380,6 +380,7 @@
               </div>
               <div class="form-button">
                 <!-- TODO: gắn link đến thẻ Create Account -->
+                <input type="hidden" name="next" value="{% url 'dashboard' %}"/>
                 <button class="button button--md w-100">Create Account</button>
               </div>
               <div class="form-register">

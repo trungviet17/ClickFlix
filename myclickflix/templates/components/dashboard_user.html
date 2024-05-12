@@ -115,7 +115,8 @@
               </li>
               <!--  Log out    -->
               <li class="dashboard__nav-item-link">
-                <a href="#" class="font-body--lg-400">
+                <!-- TODO: Add logout -->
+                <a href="{% url 'logout' %}" class="font-body--lg-400">
                   <span class="icon">
                     <svg
                       width="24"
@@ -225,7 +226,9 @@
                     <div class="dashboard__content-card-img">
                       <form action="#" style="text-align: center">
                         <div class="dashboard__content-img-wrapper">
-                          <div id="imagePreview" style="background-image: url('./static/images/user/img-07.png');"></div>
+                          <div id="imagePreview">
+                            <img src="{% static 'images/user/img-07.png' %}" alt="user" />
+                          </div>
                         </div>
                         <!-- <button class="button button--outline">
                           Choose Image
@@ -362,6 +365,7 @@
                   <div class="contact-form__content">
                     <div class="contact-form-input">
                       <label for="cpassword">Current Password </label>
+                      <!-- TODO: Add password input -->
                       <input
                         type="password"
                         id="cpassword"
@@ -394,6 +398,7 @@
                       <!-- New Password  -->
                       <div class="contact-form-input">
                         <label for="npassword">new Password </label>
+                        <!-- TODO: Add password input -->
                         <input
                           type="password"
                           id="npassword"
@@ -425,6 +430,7 @@
                       <!-- confirm  Password  -->
                       <div class="contact-form-input">
                         <label for="confirmPassword">confirm Password</label>
+                        <!-- TODO: Add password input -->
                         <input
                           type="password"
                           id="confirmPassword"
@@ -455,6 +461,7 @@
                       </div>
                     </div>
                     <div class="contact-form-btn">
+                      <!-- TODO: add link -->
                       <button class="button button--md" type="submit">
                         Change Password
                       </button>

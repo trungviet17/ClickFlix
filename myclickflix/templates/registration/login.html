@@ -246,9 +246,8 @@
                 <a href="{% url 'password_reset' %}">Forget Password </a>
                 </div>
                 <div class="form-button">
-                
-                <input type="hidden" name="next" value="{% url 'dashboard' %}"/>
-                <button type="submit" class="button button--md w-100">Login</button>
+                    <input type="hidden" name="next" value="{% url 'dashboard' %}"/>
+                    <button type="submit" class="button button--md w-100">Login</button>
                 </div>
                 <div class="form-register">
                 Don't have account ? <a href="{% url 'register' %}">Register</a>

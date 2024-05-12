@@ -115,7 +115,6 @@
               </li>
               <!--  Log out    -->
               <li class="dashboard__nav-item-link">
-                <!-- TODO: Add logout -->
                 <a href="{% url 'logout' %}" class="font-body--lg-400">
                   <span class="icon">
                     <svg
@@ -465,6 +464,7 @@
                       <button class="button button--md" type="submit">
                         Change Password
                       </button>
+                      <input type="hidden" name="next" value="{% url 'password_change_done' %}"/>
                     </div>
                   </div>
                 </form>

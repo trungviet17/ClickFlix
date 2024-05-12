@@ -8,7 +8,11 @@
     {% include "components/cart_sidebar.html" %}
     <!-- Shopping Cart sidebar  end -->
     <!-- Header Section start -->
-    {% include "components/header.html" %}
+    {% if user.is_authenticated %}
+    {% include "components/header_login.html" %}
+    {% else %} 
+    {% include "components/header.html" %} 
+    {% endif %}
     <!-- Header  Section start -->
     <!-- breedcrumb section start  -->
     <div class="section breedcrumb">
@@ -49,7 +53,7 @@
       </div>
     <!-- breedcrumb section end   -->
     <!-- dashboard Secton Start  -->
-    {% include 'components/dashboard_user.html' %}
+    {% include 'components/account_settings.html' %}
     <!-- dashboard Secton  End  -->
     <!-- cal-to-action Section Start  -->
     {% include 'components/subcribe.html' %}

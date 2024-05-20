@@ -19,12 +19,10 @@ class Category(TimeStampMixin):
     slug = models.SlugField(max_length=200, unique=True)
 
     class Meta:
-        ordering = ['name']
-        indexes = [
-            models.Index(fields=['name'])
-        ]
-        verbose_name = 'category'
-        verbose_name_plural = 'categories'
+        ordering = ["name"]
+        indexes = [models.Index(fields=["name"])]
+        verbose_name = "category"
+        verbose_name_plural = "categories"
 
     def __str__(self) -> str:
         return self.name
@@ -43,10 +41,8 @@ class Actor(TimeStampMixin):
     slug = models.SlugField(max_length=50, unique=True)
 
     class Meta:
-        ordering = ['name']
-        indexes = [
-            models.Index(fields=['name'])
-        ]
+        ordering = ["name"]
+        indexes = [models.Index(fields=["name"])]
         verbose_name = "actor"
         verbose_name_plural = "actors"
 
@@ -66,10 +62,7 @@ class Movie(TimeStampMixin):
     overview = models.TextField()
     score = models.FloatField()
     popularity = models.FloatField()
-    price = models.DecimalField(
-        max_digits=10,
-        decimal_places=2
-    )
+    price = models.DecimalField(max_digits=10, decimal_places=2)
     language = models.CharField(max_length=5)
     released = models.DateField()
     available = models.BooleanField(default=True)
@@ -80,11 +73,11 @@ class Movie(TimeStampMixin):
     categories = models.ManyToManyField(Category, related_name="movies")
 
     class Meta:
-        ordering = ['title']
+        ordering = ["title"]
         indexes = [
-            models.Index(fields=['id', 'slug']),
-            models.Index(fields=['title']),
-            models.Index(fields=['-created_at'])
+            models.Index(fields=["id", "slug"]),
+            models.Index(fields=["title"]),
+            models.Index(fields=["-created_at"]),
         ]
         verbose_name = "movie"
         verbose_name_plural = "movies"

@@ -6,32 +6,32 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('main', '0002_category_created_at_category_updated_at_actor_movie'),
+        ("main", "0002_category_created_at_category_updated_at_actor_movie"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='movie',
-            name='category',
+            model_name="movie",
+            name="category",
         ),
         migrations.AddField(
-            model_name='movie',
-            name='categories',
-            field=models.ManyToManyField(related_name='movies', to='main.category'),
+            model_name="movie",
+            name="categories",
+            field=models.ManyToManyField(related_name="movies", to="main.category"),
         ),
         migrations.AddField(
-            model_name='movie',
-            name='keyword',
-            field=models.TextField(default=''),
+            model_name="movie",
+            name="keyword",
+            field=models.TextField(default=""),
         ),
         migrations.AlterField(
-            model_name='actor',
-            name='image',
+            model_name="actor",
+            name="image",
             field=models.TextField(),
         ),
         migrations.AlterField(
-            model_name='movie',
-            name='image',
-            field=models.TextField(default=''),
+            model_name="movie",
+            name="image",
+            field=models.TextField(default=""),
         ),
     ]

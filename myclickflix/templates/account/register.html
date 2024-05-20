@@ -52,9 +52,9 @@
             <form method="post">
               <div class="form-input">
                 {% csrf_token %}
-                
 
-                <input type="email" placeholder="Email" id="{{ userform.email.id_for_label }}" name="{{userform.email.name }}" value="{{ userform.email.value|default_if_none:'' }}" /> 
+
+                <input type="email" placeholder="Email" id="{{ userform.email.id_for_label }}" name="{{userform.email.name }}" value="{{ userform.email.value|default_if_none:'' }}" />
                 <span class="icon icon-warning">
                   <svg
                     width="20"
@@ -137,8 +137,8 @@
               </div>
               <div class="form-input">
                 <!-- TODO: gắn link đến thẻ -->
-                <input type="password" placeholder="Password" id="{{ userform.password.id_for_label }}" name="{{userform.password.name }}" value="{{ userform.password.value|default_if_none:'' }}" /> 
-                
+                <input type="password" placeholder="Password" id="{{ userform.password.id_for_label }}" name="{{userform.password.name }}" value="{{ userform.password.value|default_if_none:'' }}" />
+
                 <button
                   type="button"
                   class="icon icon-eye"
@@ -255,8 +255,8 @@
                   id="confirmPassword"
                   name="password2"
                 /> -->
-                <input type="password" placeholder="ConfirmPassword" id="{{ userform.password2.id_for_label }}" name="{{userform.password2.name }}" value="{{ userform.password2.value|default_if_none:'' }}" /> 
-                
+                <input type="password" placeholder="ConfirmPassword" id="{{ userform.password2.id_for_label }}" name="{{userform.password2.name }}" value="{{ userform.password2.value|default_if_none:'' }}" />
+
                 <button
                   type="button"
                   class="icon icon-eye"

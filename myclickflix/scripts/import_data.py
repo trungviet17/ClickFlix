@@ -10,10 +10,7 @@ def run_category():
     category_df = pd.read_pickle(os.path.join(FOLDER_PATH, "genres.pkl"))
     for _, row in tqdm(category_df.iterrows(), total=category_df.shape[0]):
         if not Category.objects.filter(pk=row["id"]).exists():
-            category = Category(
-                pk=row["id"],
-                name=row["genre"]
-            )
+            category = Category(pk=row["id"], name=row["genre"])
             category.save()
     print("Import category data done!")
 

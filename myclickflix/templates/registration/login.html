@@ -49,10 +49,10 @@
             <h6 class="font-title--sm">Sign in</h6>
             <form action="{% url 'login' %}" method="post">
                 {% csrf_token %}
-                
+
                 <div class="form-input">
                 <!-- TODO: add link -->
-                <input type="email" placeholder="Email" id="{{ form.username.id_for_label }}" name="{{ form.username.name }}" value="{{ form.username.value|default_if_none:'' }}" /> 
+                <input type="email" placeholder="Email" id="{{ form.username.id_for_label }}" name="{{ form.username.name }}" value="{{ form.username.value|default_if_none:'' }}" />
                 <span class="icon icon-warning">
                     <svg
                     width="20"
@@ -135,8 +135,8 @@
                 </div>
                 <div class="form-input">
                 <!-- TODO: add link -->
-                
-                <input type="password" placeholder="Password" id="{{ form.password.id_for_label }}" name="{{ form.password.name }}" value="{{ form.password.value|default_if_none:'' }}" /> 
+
+                <input type="password" placeholder="Password" id="{{ form.password.id_for_label }}" name="{{ form.password.name }}" value="{{ form.password.value|default_if_none:'' }}" />
                 <button
                     type="button"
                     class="icon icon-eye"

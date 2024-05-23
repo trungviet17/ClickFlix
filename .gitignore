@@ -164,6 +164,7 @@ cython_debug/
 .idea/
 /data
 /.vscode
+db.sqlite3
 myclickflix\db.sqlite3
 
 Data/Main_data

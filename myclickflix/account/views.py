@@ -33,13 +33,12 @@ def register(request):
 
 
 @login_required
-def edit(request):
-
-    if request.method == "POST":
-        user_form = UserEditForm(instance=request.user, data=request.POST)
-        profile_form = ProfileForm(
-            instance=request.user.profile, data=request.POST, files=request.FILE
-        )
+def edit(request): 
+    if request.method == 'POST': 
+        user_form = UserEditForm(instance=request.user, data = request.POST)
+        profile_form = ProfileForm(instance = request.user.profile, 
+                                   data = request.POST, 
+                                   files = request.FILE)
 
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
@@ -59,6 +58,6 @@ def edit(request):
     return render(request, "account/edit.html", context)
 
 
-def dashboard(request):
+def dashboard(request): 
+    return render(request, 'account/dashboard.html')
 
-    return render(request, "account/dashboard.html")

@@ -8,7 +8,7 @@ Table Contents
     4. Loader
     5. Newsletter Modal
     6. Menu
-    7. Shopping Cart 
+    7. Shopping Cart
     8. Product Image Change
     9. Cart Quantity
     10. Products Filter
@@ -18,7 +18,7 @@ Table Contents
     14. Filter
         14.1    Filter Sidebar
         14.2    Blog Sidebar Filter
-        14.3    Shop Sidebar Filter 
+        14.3    Shop Sidebar Filter
     15. Password Show/Hide
     16. Slider
         16.1    Banner Slider
@@ -36,7 +36,7 @@ Table Contents
 
  */
 
-/* 
+/*
     1. Countdown timer
 ======================== */
 if (document.getElementById('countdownTwo')) {
@@ -59,12 +59,12 @@ if (document.getElementById('countdown')) {
   });
 }
 
-/* 
+/*
     2. Stirct Mode
 ======================== */
 ('use strict');
 
-/* 
+/*
     3. BVSelect Plugin
 ======================== */
 if (document.getElementById('selectbox1')) {
@@ -166,8 +166,8 @@ if (document.getElementById('number')) {
   });
 }
 
-/* 
-    4. Loader 
+/*
+    4. Loader
 ======================== */
 const preloader = document.querySelector('.loader');
 
@@ -175,7 +175,7 @@ window.addEventListener('load', (event) => {
   preloader.style.display = 'none';
 });
 
-/* 
+/*
     5. Newsletter Modal
 ======================== */
 // Do not show newsletter
@@ -200,8 +200,8 @@ if (newsletterModal) {
   }
 }
 
-/* 
-    6. Menu 
+/*
+    6. Menu
 ======================== */
 
 //  Header navigation Sidebar
@@ -244,8 +244,8 @@ function menuClick(current) {
   }
 }
 
-/* 
-    7. Shopping Cart 
+/*
+    7. Shopping Cart
 ======================== */
 let cartBtn = document.querySelector('#cart-bag');
 let closeBtn = document.querySelector('.shopping-cart .close');
@@ -278,7 +278,7 @@ $galleryItem.on('click', function () {
   }
 });
 
-/* 
+/*
     9. Cart Quantity
 ======================== */
 function increment() {
@@ -289,7 +289,7 @@ function decrement() {
   document.getElementById('counter-btn-counter').stepDown();
 }
 
-/* 
+/*
     10. Products Filter
 ======================== */
 const filterToggle = document.querySelector('#filter');
@@ -314,8 +314,8 @@ if (filterToggle) {
 			item.classList.remove("col-xl-4");
 			item.classList.add("col-xl-6");
 		}
-      
-    }) 
+
+    })
 
     // it's will be on 4 column
     productContent.forEach((item) => {
@@ -340,7 +340,7 @@ if (filterBtn) {
   });
 }
 
-/* 
+/*
     11. Range Slider
 ======================== */
 var range = document.getElementById('priceRangeSlider');
@@ -357,7 +357,7 @@ if (range) {
   });
 }
 
-/* 
+/*
     12. Lightbox Plugin
 ======================== */
 if (document.getElementsByClassName('venobox')[0]) {
@@ -366,7 +366,7 @@ if (document.getElementsByClassName('venobox')[0]) {
   });
 }
 
-/* 
+/*
     13. Swiper Slider
 ======================== */
 var swiper = new Swiper('.mySwiper', {
@@ -389,8 +389,8 @@ var swiper2 = new Swiper('.mySwiper2', {
   },
 });
 
-/* 
-    14. Filter 
+/*
+    14. Filter
 ======================== */
 // 14.1    Filter Sidebar
 const orderHisotryFilter = document.querySelector('.filter-icon');
@@ -440,7 +440,7 @@ if (filterSidebarButton) {
   });
 }
 
-/* 
+/*
     15. Password Show/Hide
 ======================== */
 function showPassword(id, el) {
@@ -456,7 +456,7 @@ function showPassword(id, el) {
   }
 }
 
-/* 
+/*
     16. Slider
 ======================== */
 // 16.1    Banner Slider

@@ -18,7 +18,7 @@ class BVSelect {
         search_placeholder = "Search...",
         placeholder = "Select Option",
         breakpoint = "600"
-    }) 
+    })
     {
 
         // Random Number generated
@@ -44,7 +44,7 @@ class BVSelect {
         // Hides native selector
         document.getElementById(this.selector).style.display = "none";
 
-        // ** ADD OPTIONS TO LIST ** 
+        // ** ADD OPTIONS TO LIST **
         this.SetupListOptions = function() {
             // Get All options inside Selectbox
             var x = document.getElementById(this.selector);
@@ -69,7 +69,7 @@ class BVSelect {
                 } else {
                     var is_separator = "";
                 }
-                // Check for Attachment  
+                // Check for Attachment
                 if (optionImg) {
                     var has_attachment = "<img src=" + optionImg + ">";
                 } else {
@@ -109,7 +109,7 @@ class BVSelect {
                             } else {
                                 selectedMultiple.push(index);
                                 item.style.backgroundColor = "#ececec";
-                            } // Adds to array 
+                            } // Adds to array
 
                             // Check if array is empty, if it is, gets the first option
                             if (selectedMultiple.length == 0) {
@@ -215,7 +215,7 @@ class BVSelect {
                       document.getElementById("ul_" + randomID).classList.add("bv_ul_mobile");
                       document.getElementById(MDivSelector).insertAdjacentHTML('afterend', '<div id="deletebg" class="bv_ul_bg"></div>');
                       document.body.classList.add("stop-scrolling");
-                      
+
                 } else {
                      document.getElementById("ul_" + randomID).classList.remove("bv_ul_mobile");
                 }
@@ -254,8 +254,8 @@ class BVSelect {
 
                 // Check if autofocus and search is enabled
                 if(search_autofocus == true && searchbox == true) { document.getElementById("input_" + randomID).focus();}
-            
-               
+
+
             }, false);
 
             // ** SETUP LIST OPTIONS **
@@ -407,7 +407,7 @@ class BVSelect {
         }, true);
     }
 
-    // ** METHODS ** 
+    // ** METHODS **
     // DESTROY
     Destroy() {
         // Destroy main element and shows up native selectbox
@@ -416,7 +416,7 @@ class BVSelect {
     }
     // UPDATE
     Update() {
-        // Removes all Li that does not contain class "nofocus" - Its the search. 
+        // Removes all Li that does not contain class "nofocus" - Its the search.
         Array.from(document.querySelectorAll("#ul_" + this.randomID + " li"))
             .forEach(function(val) {
                 if (!val.classList.contains("nofocus")) {
@@ -436,11 +436,11 @@ class BVSelect {
         if(properties.placeholder)
         {
             document.getElementById("main_" + this.randomID).innerHTML = properties.placeholder + "<i id='arrow_" + this.randomID + "' class='arrows_bv arrow down'></i>";
-        } 
+        }
         if(properties.search_placeholder)
         {
             document.getElementById("input_" + this.randomID).placeholder = properties.search_placeholder;
-        } 
+        }
         if(properties.options && typeof(properties.options) === 'object')
         {
             // Clean every option inside the original selector
@@ -460,7 +460,7 @@ class BVSelect {
             }
 
         } else {
-            console.error("Options must be and Object. Read documentation."); 
+            console.error("Options must be and Object. Read documentation.");
         }
     }
     // Set option
@@ -471,7 +471,7 @@ class BVSelect {
         // If is set by index
         if(properties.type == "byIndex")
         {
-            selectorIndex.selectedIndex = properties.value; 
+            selectorIndex.selectedIndex = properties.value;
 
             // Trigger onchange function
             if (selectorIndex.getAttribute("onchange") != null) { document.getElementById(this.selector).onchange(); }
@@ -484,7 +484,7 @@ class BVSelect {
 
                  if(selectorIndex[i].value == properties.value)
                  {
-                    selectorIndex.selectedIndex = selectorIndex[i].index; 
+                    selectorIndex.selectedIndex = selectorIndex[i].index;
 
                     // Trigger onchange function
                     if (selectorIndex.getAttribute("onchange") != null) { document.getElementById(this.selector).onchange(); }
@@ -495,7 +495,7 @@ class BVSelect {
     }
     // Append/Prepend Option
     AppendOption(properties) {
-        
+
         console.log(properties);
 
         // Get position e check if position is undefined.
@@ -521,5 +521,5 @@ class BVSelect {
         } else {
             console.error("Options must be and Object. Read documentation.");
         }
-    } 
+    }
 }

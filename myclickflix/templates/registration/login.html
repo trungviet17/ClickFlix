@@ -51,8 +51,8 @@
                 {% csrf_token %}
 
                 <div class="form-input">
-                
-                <input type="email" placeholder="Email" id="{{ form.username.id_for_label }}" name="{{ form.username.name }}" value="{{ form.username.value|default_if_none:'' }}" /> 
+
+                <input type="email" placeholder="Email" id="{{ form.username.id_for_label }}" name="{{ form.username.name }}" value="{{ form.username.value|default_if_none:'' }}" />
                 <span class="icon icon-warning">
                     <svg
                     width="20"
@@ -134,9 +134,9 @@
                 </span>
                 </div>
                 <div class="form-input">
-                
-                
-                <input type="password" placeholder="Password" id="{{ form.password.id_for_label }}" name="{{ form.password.name }}" value="{{ form.password.value|default_if_none:'' }}" /> 
+
+
+                <input type="password" placeholder="Password" id="{{ form.password.id_for_label }}" name="{{ form.password.name }}" value="{{ form.password.value|default_if_none:'' }}" />
                 <button
                     type="button"
                     class="icon icon-eye"

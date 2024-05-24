@@ -69,8 +69,8 @@ class Movie(TimeStampMixin):
     keyword = models.TextField(default="")
     image = models.TextField(default="")
 
-    actors = models.ManyToManyField(Actor, related_name="movies")
-    categories = models.ManyToManyField(Category, related_name="movies")
+    actors = models.ManyToManyField(Actor, related_name="movie")
+    categories = models.ManyToManyField(Category, related_name="movie")
 
     class Meta:
         ordering = ["title"]

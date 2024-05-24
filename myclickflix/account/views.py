@@ -17,7 +17,6 @@ def register(request):
         userform = UserRegistrationForm(request.POST)
 
         if userform.is_valid():
-
             new_user = userform.save(commit=False)
             new_user.set_password(userform.cleaned_data["password"])
             new_user.username = str(userform.cleaned_data["email"]).split("@")[0]
@@ -37,6 +36,7 @@ def register(request):
 def edit(request):
     if request.method == "POST":
         user_form = UserEditForm(instance=request.user, data=request.POST)
+
         profile_form = ProfileForm(instance=request.user.profile, data=request.POST)
 
         form_edit_password = PasswordChangeForm(user=request.user, data=request.POST)
@@ -46,6 +46,7 @@ def edit(request):
         else:
             print(form_edit_password.errors)
             messages.error(request, "Error updating your profile")
+
 
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()

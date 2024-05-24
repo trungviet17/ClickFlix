@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{{ actor.name }}</title>
+    </head>
+    <body>
+        <div>
+            <h2>Actor</h2>
+            <p>{{ actor.name }}</p>
+            <p>{{ actor.birthday }}</p>
+            <p>{{ actor.bio }}</p>
+            <p>{{ actor.image }}</p>
+            <p>{{ actor.slug }}</p>
+        </div>
+
+        <div>
+            <h2>Movie</h2>
+            {% for movie in movies %}
+                <p>
+                    <a href="{% url 'movie_detail' movie_slug=movie.slug %}">{{ movie.title }}</a>
+                </p>
+            {% endfor %}
+        </div>
+    </body>
+</html>

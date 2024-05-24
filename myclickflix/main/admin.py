@@ -1,8 +1,6 @@
 from django.contrib import admin
 from .models import Category, Movie, Actor
 
-# Register your models here.
-
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
@@ -24,7 +22,16 @@ class MovieAdmin(admin.ModelAdmin):
         "available",
         "image",
     ]
-    list_filter = ["available", "created_at", "updated_at"]
+    search_fields = ["title", "overview"]
+    list_filter = [
+        "available",
+        "created_at",
+        "updated_at",
+        "score",
+        "popularity",
+        "price",
+        "language",
+    ]
     list_editable = ["price", "available"]
     prepopulated_fields = {"slug": ("title",)}
 

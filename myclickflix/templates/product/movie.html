@@ -6,6 +6,7 @@
     <body>
         <div>
             <h2>Movie</h2>
+            <p>id: {{ movie.id }}</p>
             <p>Title: {{ movie.title }}</p>
             <p>Slug: {{ movie.slug }}</p>
             <p>Overview: {{ movie.overview }}</p>
@@ -13,7 +14,6 @@
             <p>price: {{ movie.price }}</p>
             <p>language: {{ movie.language }}</p>
             <p>released: {{ movie.released }}</p>
-            <p>available: {{ movie.available }}</p>
             <p>keyword: {{ movie.keyword }}</p>
             <p>link_image: {{ movie.image }}</p>
         </div>
@@ -32,7 +32,16 @@
             <h2>Categories</h2>
             {% for category in categories %}
                 <p>
-                    <a href="{% url 'category_detail' category_slug=category.slug %}">{{ category.name }}</a>
+                    <a href="{% url 'search_movie'  %}?categories={{ category.id }}">{{ category.name }}</a>
+                </p>
+            {% endfor %}
+        </div>
+
+        <div>
+            <h2>Recommendations</h2>
+            {% for movie in recommendations %}
+                <p>
+                    <a href="{% url 'movie_detail' movie_slug=movie.slug %}">{{ movie.title }}</a>
                 </p>
             {% endfor %}
         </div>

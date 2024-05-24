@@ -2,8 +2,9 @@ from django.http import HttpResponseNotFound
 from django.shortcuts import render
 from django.core.paginator import Paginator
 
-from main.models import Category, Movie, Actor
+from main.models import Movie, Actor
 from main.forms import MovieFilterForm
+from main.recommend import recommend
 
 
 def move_list(request):
@@ -11,7 +12,6 @@ def move_list(request):
     movies = Movie.objects.all().filter(available=True)
 
     if form.is_valid():
-        print(form.cleaned_data["categories"])
         if form.cleaned_data["title"]:
             movies = movies.filter(title__icontains=form.cleaned_data["title"])
         if form.cleaned_data["price_min"]:
@@ -35,11 +35,13 @@ def movie_detail(request, movie_slug):
         return HttpResponseNotFound("Movie not found")
     actors = movie.actors.all()
     categories = movie.categories.all()
-
+    recommendations = recommend(movie.id)
+    recommendations = Movie.objects.filter(id__in=recommendations)
     context = {
         "movie": movie,
         "actors": actors,
         "categories": categories,
+        "recommendations": recommendations,
     }
     return render(request, "product/movie.html", context=context)
 
@@ -56,21 +58,3 @@ def actor_detail(request, actor_slug):
         "movies": movies,
     }
     return render(request, "product/actor.html", context=context)
-
-
-def category_detail(request, category_slug):
-    try:
-        category = Category.objects.get(slug=category_slug)
-    except Category.DoesNotExist:
-        return HttpResponseNotFound("Category not found")
-
-    movies = category.movie.all().filter(available=True)
-    paginator = Paginator(movies, 25)
-    page_number = request.GET.get("page")
-    page_obj = paginator.get_page(page_number)
-
-    context = {
-        "category": category,
-        "movies": page_obj,
-    }
-    return render(request, "product/category.html", context=context)

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Movie, Actor
+from .models import Category, Movie, Actor, RechargeCode
 
 
 @admin.register(Category)
@@ -41,3 +41,8 @@ class ActorAdmin(admin.ModelAdmin):
     list_display = ["name", "birthday", "bio"]
     list_filter = ["name", "birthday"]
     prepopulated_fields = {"slug": ("name",)}
+
+
+@admin.register(RechargeCode)
+class RechargeCodeAdmin(admin.ModelAdmin):
+    list_display = ["code", "amount", "quantity"]

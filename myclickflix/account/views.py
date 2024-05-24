@@ -1,12 +1,11 @@
 from django.shortcuts import render
-from .form import UserEditForm, UserRegistrationForm, ProfileForm
-from .models import Profile
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.forms import PasswordChangeForm
 from cart.cart import Cart
 
-# Create your views here.
+from .form import UserEditForm, UserRegistrationForm, ProfileForm
+from .models import Profile
 
 
 """Hàm view cho màn hình đăng kí tài khoản của người dùng """

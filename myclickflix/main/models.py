@@ -4,8 +4,9 @@ from django.utils.text import slugify
 from typing import List
 import json
 
+from account.models import Profile
 
-# Create your models here.
+
 class TimeStampMixin(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -56,7 +57,6 @@ class Actor(TimeStampMixin):
 
 
 class Movie(TimeStampMixin):
-
     title = models.CharField(max_length=200)
     slug = models.CharField(max_length=200, unique=True)
     overview = models.TextField()
@@ -94,6 +94,37 @@ class Movie(TimeStampMixin):
         super(Movie, self).save(*args, **kwargs)
 
 
-# class MovieActor(models.Model):
-#     movie = models.ForeignKey(Movie, on_delete=models.PROTECT)
-#     actor = models.ForeignKey(Actor, on_delete=models.PROTECT)
+class PurchasedMovie(TimeStampMixin):
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ("profile", "movie")
+
+    def __str__(self):
+        return f"{self.profile.user.username} - {self.movie.title}"
+
+
+class OrderDetail(TimeStampMixin):
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    item = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return self.title
+
+    def get_total_item_price(self):
+        return self.quantity * self.price
+
+
+class Order(TimeStampMixin):
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    items = models.ManyToManyField(OrderDetail)
+    total_amount = models.DecimalField(max_digits=10, decimal_places=2)
+
+
+class RechargeCode(TimeStampMixin):
+    code = models.CharField(max_length=20)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    quantity = models.IntegerField(default=1)

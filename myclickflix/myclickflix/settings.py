@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "account.apps.AccountConfig",
     "main.apps.MainConfig",
     "cart.apps.CartConfig",
+    "payment.apps.PaymentConfig",
 ]
 
 MIDDLEWARE = [
@@ -287,4 +288,6 @@ JAZZMIN_SETTINGS = {
     # "language_chooser": True,
 }
 
+
 LOGIN_URL = "/login/"
+

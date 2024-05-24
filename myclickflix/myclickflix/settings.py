@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv, dotenv_values
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -153,3 +156,9 @@ EMAIL_HOST_PASSWORD = os.getenv("EMAIL_CLICKFLIX_PASSWORD")
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
+
+
+STRIPE_PUBLISHABLE_KEY = os.getenv("STRIPE_PUBLISHABLE_KEY")  # Publishable key
+STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY")
+# Secret key
+STRIPE_API_VERSION = "2024-08-01"

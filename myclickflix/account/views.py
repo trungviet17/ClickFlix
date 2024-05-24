@@ -4,6 +4,7 @@ from .models import Profile
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.forms import PasswordChangeForm
+from cart.cart import Cart
 
 # Create your views here.
 
@@ -47,7 +48,6 @@ def edit(request):
             print(form_edit_password.errors)
             messages.error(request, "Error updating your profile")
 
-
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
@@ -73,4 +73,5 @@ def edit(request):
 
 
 def dashboard(request):
+
     return render(request, "account/dashboard.html")

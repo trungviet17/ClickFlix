@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django_extensions",
     "account.apps.AccountConfig",
     "main.apps.MainConfig",
+    "cart.apps.CartConfig",
 ]
 
 MIDDLEWARE = [
@@ -66,6 +67,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "cart.context.cart",
             ],
         },
     },
@@ -141,6 +143,8 @@ AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
     "account.authentication.EmailAuthBackEnd",
 ]
+
+CART_SESSION_ID = "cart"
 
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = "smtp.gmail.com"

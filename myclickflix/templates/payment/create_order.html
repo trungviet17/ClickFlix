@@ -1,0 +1,26 @@
+
+
+{% block title %}
+  Checkout
+{% endblock %}
+
+{% block content %}
+  <h1>Checkout</h1>
+  <div class="order-info">
+    <h3>Your order</h3>
+    <ul>
+      {% for item in cart %}
+        <li>
+          {{ item.movie.title }}
+          <span>${{ item.movie.price }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+    <p>Total: ${{ cart.get_total_price }}</p>
+  </div>
+  <form method="post" action="{% url 'payment:create_order' %}">
+
+    <input type="submit" value="Place order">
+    {% csrf_token %}
+  </form>
+{% endblock %}

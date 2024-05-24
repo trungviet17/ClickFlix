@@ -1,0 +1,49 @@
+{% extends "components/base.html" %}
+{% load static %}
+
+{% block title %}Pay your order{% endblock %}
+
+{% block content %}
+  <h1>Order summary</h1>
+  <table class="cart">
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in order.items.all %}
+        <tr class="row{% cycle '1' '2' %}">
+          <td>
+            <img src="{{ 'https://media.themoviedb.org/t/p/w300_and_h450_bestv2' | add:item.movie.image }}">
+          </td>
+          <td>{{ item.product.name }}</td>
+          <td class="num">${{ item.price }}</td>
+
+          <td class="num">${{ item.get_cost }}</td>
+        </tr>
+      {% endfor %}
+      <tr class="total">
+        <td colspan="4">Total</td>
+        <td class="num">${{ order.get_total_cost }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <form action="{% url 'payment:process' %}" method="post">
+    <input type="submit" value="Pay now">
+    {% csrf_token %}
+  </form>
+
+
+
+    <script type="text/javascript" src="{% static 'lib/js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'lib/js/swiper-bundle.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'lib/js/bvselect.js' %}"></script>
+    <script type="text/javascript" src="{% static 'lib/js/bootstrap.bundle.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+{% endblock %}

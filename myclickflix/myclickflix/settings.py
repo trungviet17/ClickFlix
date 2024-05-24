@@ -163,7 +163,7 @@ EMAIL_USE_SSL = False
 STRIPE_PUBLISHABLE_KEY = os.getenv("STRIPE_PUBLISHABLE_KEY")  # Publishable key
 STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY")
 # Secret key
-STRIPE_API_VERSION = "2024-08-01"
+STRIPE_API_VERSION = "2022-08-01"
 
 JAZZMIN_SETTINGS = {
     # title of the window (Will default to current_admin_site.site_title if absent or None)
@@ -290,4 +290,3 @@ JAZZMIN_SETTINGS = {
 
 
 LOGIN_URL = "/login/"
-

@@ -43,7 +43,7 @@ def movie_detail(request, movie_slug):
         "categories": categories,
         "recommendations": recommendations,
     }
-    return render(request, "product/movie.html", context=context)
+    return render(request, "product/product-detals.html", context=context)
 
 
 def actor_detail(request, actor_slug):

@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv, dotenv_values
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -42,6 +45,7 @@ INSTALLED_APPS = [
     "django_extensions",
     "account.apps.AccountConfig",
     "main.apps.MainConfig",
+    "cart.apps.CartConfig",
 ]
 
 MIDDLEWARE = [
@@ -67,6 +71,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "cart.context.cart",
             ],
         },
     },
@@ -143,6 +148,8 @@ AUTHENTICATION_BACKENDS = [
     "account.authentication.EmailAuthBackEnd",
 ]
 
+CART_SESSION_ID = "cart"
+
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_HOST_USER = "clickflixofficial@gmail.com"
@@ -150,6 +157,13 @@ EMAIL_HOST_PASSWORD = os.getenv("EMAIL_CLICKFLIX_PASSWORD")
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
+
+
+
+STRIPE_PUBLISHABLE_KEY = os.getenv("STRIPE_PUBLISHABLE_KEY")  # Publishable key
+STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY")
+# Secret key
+STRIPE_API_VERSION = "2024-08-01"
 
 JAZZMIN_SETTINGS = {
     # title of the window (Will default to current_admin_site.site_title if absent or None)
@@ -273,3 +287,4 @@ JAZZMIN_SETTINGS = {
     # Add a language dropdown into the admin
     # "language_chooser": True,
 }
+

@@ -185,28 +185,36 @@
                         <div class="contact-form__content">
                           <div class="contact-form-input">
                             <label for="fname1">First Name </label>
-                            <input type="text" placeholder="Your First Name" id="{{ user_form.first_name.id_for_label }}" name="{{ user_form.first_name.name }}" value="{{ user_form.first_name.value|default_if_none:'' }}" /> 
+                            <input type="text" placeholder="Your First Name" id="{{ user_form.first_name.id_for_label }}" name="{{ user_form.first_name.name }}" value="{{ user_form.first_name.value|default_if_none:'' }}" />
                           </div>
                           <div class="contact-form-input">
                             <label for="lname2">Last Name </label>
-                            <input type="text" placeholder="Your Last Name" id="{{ user_form.last_name.id_for_label }}" name="{{ user_form.last_name.name }}" value="{{ user_form.last_name.value|default_if_none:'' }}" /> 
+                            <input type="text" placeholder="Your Last Name" id="{{ user_form.last_name.id_for_label }}" name="{{ user_form.last_name.name }}" value="{{ user_form.last_name.value|default_if_none:'' }}" />
                           </div>
                           <div class="contact-form-input">
                             <label for="email1">Email </label>
-                            <input type="email" placeholder="Your Email" id="{{ user_form.email.id_for_label }}" name="{{ user_form.email.name }}" value="{{ user_form.email.value|default_if_none:'' }}" /> 
+                            <input type="email" placeholder="Your Email" id="{{ user_form.email.id_for_label }}" name="{{ user_form.email.name }}" value="{{ user_form.email.value|default_if_none:'' }}" />
                           </div>
                           <div class="contact-form-input">
                             <label for="number1">Phone Number</label>
-                            <input
-                              type="number"
-                              id="number1"
-                              placeholder="(603) 555-0123"
-                            />
+                            <input type="text" placeholder="Your Phone Number" id ="{{profile_form.phone.id_for_label}}" name="{{ profile_form.phone.name}}" value="{{ profile_form.phone.value|default_if_none:'' }}"/>
                           </div>
+
+
+                          <div class="contact-form-input">
+                            <label for="bod">Date of Birth</label>
+                            <input type="date" placeholder="Your birthday" id="{{ profile_form.date_of_birth.id_for_label}}" name="{{ profile_form.date_of_birth.name}}" value="{{ profile_form.date_of_birth.value|default_if_none:'' }}"/>
+                          </div>
+
+                          <div class="contact-form-input">
+                            <label for="address">Address</label>
+                            <input type="text" placeholder="Your address" id="{{ profile_form.address.id_for_label}}" name="{{ profile_form.address.name }}" value="{{ profile_form.address.value|default_if_none:'' }}"/>
+                          </div>
+
+
                           <div class="contact-form-btn">
-                            <button class="button button--md" type="submit">
-                              Save Changes
-                            </button>
+                            <input class="button button--md" type="submit" value="Save Changes">
+
                           </div>
                         </div>
                       </form>
@@ -235,7 +243,7 @@
               </div>
             </div>
 
-            
+
 
             <!-- Change Password  -->
             <div class="dashboard__content-card">
@@ -243,12 +251,13 @@
                 <h5 class="font-body--xxl-500">Change Password</h5>
               </div>
               <div class="dashboard__content-card-body">
-                <form action="#">
+                <form method="post">
+                  {% csrf_token %}
                   <div class="contact-form__content">
                     <div class="contact-form-input">
                       <label for="cpassword">Current Password </label>
                       <!-- TODO: Add password input -->
-                      <input type="password" placeholder="Password" id="{{ form.password.id_for_label }}" name="{{ form.password.name }}" value="{{ form.password.value|default_if_none:'' }}" /> 
+                      <input type="password" placeholder="Password" id="{{ edit_password_form.old_password.id_for_label }}" name="{{ edit_password_form.old_password.name }}" value="" />
                       <span
                         class="icon"
                         onclick="showPassword('cpassword',this)"
@@ -278,7 +287,7 @@
                         <label for="npassword">new Password </label>
 
                         <!-- TODO: Add password input -->
-                        <input type="password" placeholder="Password" id="{{ form.password.id_for_label }}" name="{{ form.password.name }}" value="{{ form.password.value|default_if_none:'' }}" /> 
+                        <input type="password" placeholder="New Password" id="{{ edit_password_form.new_password1.id_for_label }}" name="{{ edit_password_form.new_password1.name }}" value="" />
                         <span
                           class="icon"
                           onclick="showPassword('npassword',this)"
@@ -306,7 +315,7 @@
                       <div class="contact-form-input">
                         <label for="confirmPassword">confirm Password</label>
                         <!-- TODO: Add password input -->
-                        <input type="password" placeholder="Password" id="{{ form.password.id_for_label }}" name="{{ form.password.name }}" value="{{ form.password.value|default_if_none:'' }}" /> 
+                        <input type="password" placeholder="Confirm Password" id="{{ edit_password_form.new_password2.id_for_label }}" name="{{ edit_password_form.new_password2.name }}" value="" />
                         <span
                           class="icon"
                           onclick="showPassword('confirmPassword',this)"
@@ -333,10 +342,10 @@
                     </div>
                     <div class="contact-form-btn">
                       <!-- TODO: add link -->
-                      <button class="button button--md" type="submit">
-                        Change Password
-                      </button>
-                      <input type="hidden" name="next" value="{% url 'password_change_done' %}"/>
+                      <input class="button button--md" type="submit" value="Change your password">
+
+
+
                     </div>
                   </div>
                 </form>

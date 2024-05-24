@@ -25,7 +25,7 @@ def move_list(request):
     paginator = Paginator(movies, 25)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
-    return render(request, "product/search.html", {"form": form, "movies": page_obj})
+    return render(request, "product/shop.html", {"form": form, "movies": page_obj})
 
 
 def movie_detail(request, movie_slug):

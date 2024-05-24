@@ -15,7 +15,7 @@
                 <img src="{{ 'https://media.themoviedb.org/t/p/w300_and_h450_bestv2' | add:movie.image }}">
                 <p>Price: {{ movie.price }}</p>
 
-                <form action="{% url 'cart:remove_from_cart' movie.id}" method="post">
+                <form action="{% url 'cart:remove_from_cart' movie.id %}" method="post">
                     {% csrf_token %}
                     <input type="submit" value="Remove">
 

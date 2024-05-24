@@ -200,21 +200,25 @@
                     <!-- Action button -->
                     <div class="products__content">
                         <div class="products__content-action">
+                            <form action="{% url 'cart:add_to_cart' movie.id  %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="button button--md products__content-action-item">
+                                    Add to Cart
+                                    <span>
+                                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M5.66667 7.33333H3.16667L1.5 16.5H16.5L14.8333 7.33333H12.3333M5.66667 7.33333V4.83333C5.66667 2.99239 7.15905 1.5 9 1.5V1.5C10.8409 1.5 12.3333 2.99238 12.3333 4.83333V7.33333M5.66667 7.33333H12.3333M5.66667 7.33333V9.83333M12.3333 7.33333V9.83333"
+                                                stroke="currentColor"
+                                                stroke-width="1.3"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                            />
+                                        </svg>
+                                    </span>
+                                </button>
+
+                            </form>
                             <!-- add to cart  -->
-                            <button class="button button--md products__content-action-item">
-                                Add to Cart
-                                <span>
-                                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M5.66667 7.33333H3.16667L1.5 16.5H16.5L14.8333 7.33333H12.3333M5.66667 7.33333V4.83333C5.66667 2.99239 7.15905 1.5 9 1.5V1.5C10.8409 1.5 12.3333 2.99238 12.3333 4.83333V7.33333M5.66667 7.33333H12.3333M5.66667 7.33333V9.83333M12.3333 7.33333V9.83333"
-                                            stroke="currentColor"
-                                            stroke-width="1.3"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                        />
-                                    </svg>
-                                </span>
-                            </button>
 
                             <!-- fav  -->
                             <button class="button-fav products__content-action-item">

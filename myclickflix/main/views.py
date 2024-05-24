@@ -1,9 +1,13 @@
 from django.http import HttpResponseNotFound
 from django.shortcuts import render
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
-from main.models import Movie, Actor
-from main.forms import MovieFilterForm
+
+from main.models import Movie, Actor, RechargeCode, Category
+from account.models import Profile
+from main.forms import MovieFilterForm, RechargeForm
 from main.recommend import recommend
 
 
@@ -58,3 +62,35 @@ def actor_detail(request, actor_slug):
         "movies": movies,
     }
     return render(request, "product/actor.html", context=context)
+
+
+def get_category(request):
+    categories = Category.objects.all()
+    context = {"categories": categories}
+    return render(request, "product/category.html", context=context)
+
+
+@login_required
+def recharge_account(request):
+    if request.method == "POST":
+        form = RechargeForm(request.POST)
+        if form.is_valid():
+            code = form.cleaned_data["code"]
+            try:
+                recharge_code = RechargeCode.objects.get(code=code, quantity__gte=1)
+            except RechargeCode.DoesNotExist:
+                messages.error(request, "Invalid or already used recharge code!")
+            profile = Profile.objects.get(user=request.user)
+            profile.balance += recharge_code.amount
+            profile.save()
+
+            recharge_code.quantity -= 1
+            recharge_code.save()
+            messages.success(
+                request,
+                f"Successfully recharged {recharge_code.amount} to your account!",
+            )
+            return render(request, "payment/recharge.html", {"form": form})
+    else:
+        form = RechargeForm()
+    return render(request, "payment/recharge.html", {"form": form})

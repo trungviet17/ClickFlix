@@ -1,11 +1,10 @@
 from django.shortcuts import render
-from .form import UserEditForm, UserRegistrationForm, ProfileForm
-from .models import Profile
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.forms import PasswordChangeForm
 
-# Create your views here.
+from .form import UserEditForm, UserRegistrationForm, ProfileForm
+from .models import Profile
 
 
 """Hàm view cho màn hình đăng kí tài khoản của người dùng """
@@ -46,7 +45,6 @@ def edit(request):
         else:
             print(form_edit_password.errors)
             messages.error(request, "Error updating your profile")
-
 
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()

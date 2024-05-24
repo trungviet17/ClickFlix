@@ -1,34 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>{{ category.name }}</title>
+        <title>Category</title>
     </head>
     <body>
-        <h2>Category: {{ category.name }}</h2>
+        <h2>Category</h2>
         <div>
-            {% for movie in movies %}
+            {% for category in categories %}
                 <p>
-                    <a href="{% url 'movie_detail' movie_slug=movie.slug %}">{{ movie.title }}</a>
+                    <a href="{% url 'search_movie'  %}?categories={{ category.id }}">{{ category.name }}</a>
                 </p>
             {% endfor %}
         </div>
 
-        <div class="pagination">
-            <span class="step-links">
-                {% if movies.has_previous %}
-                    <a href="?page=1">&laquo; first</a>
-                    <a href="?page={{ movies.previous_page_number }}">previous</a>
-                {% endif %}
-
-                <span class="current">
-                    Page {{ movies.number }} of {{ movies.paginator.num_pages }}.
-                </span>
-
-                {% if movies.has_next %}
-                    <a href="?page={{ movies.next_page_number }}">next</a>
-                    <a href="?page={{ movies.paginator.num_pages }}">last &raquo;</a>
-                {% endif %}
-            </span>
-        </div>
     </body>
 </html>

@@ -45,7 +45,7 @@ def edit(request):
         if form_edit_password.is_valid():
             form_edit_password.save()
         else:
-            print(form_edit_password.errors)
+
             messages.error(request, "Error updating your profile")
 
         if user_form.is_valid() and profile_form.is_valid():

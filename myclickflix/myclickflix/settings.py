@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "account.apps.AccountConfig",
     "main.apps.MainConfig",
     "cart.apps.CartConfig",
+    "payment.apps.PaymentConfig",
 ]
 
 MIDDLEWARE = [
@@ -157,7 +158,6 @@ EMAIL_HOST_PASSWORD = os.getenv("EMAIL_CLICKFLIX_PASSWORD")
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
-
 
 
 STRIPE_PUBLISHABLE_KEY = os.getenv("STRIPE_PUBLISHABLE_KEY")  # Publishable key
@@ -287,4 +287,3 @@ JAZZMIN_SETTINGS = {
     # Add a language dropdown into the admin
     # "language_chooser": True,
 }
-

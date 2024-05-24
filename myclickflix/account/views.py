@@ -5,6 +5,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from cart.cart import Cart
 
 from .form import UserEditForm, UserRegistrationForm, ProfileForm
+from main.models import Category
 from .models import Profile
 
 
@@ -72,5 +73,6 @@ def edit(request):
 
 
 def dashboard(request):
-
-    return render(request, "account/dashboard.html")
+    categories = Category.objects.all()
+    context = {"categories": categories}
+    return render(request, "account/dashboard.html", context=context)

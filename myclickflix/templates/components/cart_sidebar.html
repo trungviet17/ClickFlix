@@ -2,7 +2,7 @@
 <div class="shopping-cart">
     <div class="shopping-cart-top">
         <div class="shopping-cart-header">
-            <h5 class="font-body--xxl-500">Shopping Cart (<span class="count">2</span>)</h5>
+            <h5 class="font-body--xxl-500">Shopping Cart (<span class="count">{{cart|length}}</span>)</h5>
             <button class="close">
                 <svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="22.5" cy="22.5" r="22.5" fill="white" />
@@ -11,56 +11,48 @@
                 </svg>
             </button>
         </div>
+        {% for item in cart %}
+            {% with movie=item.movie %}
+            <div class="shopping-cart__product-content">
+                <div class="shopping-cart__product-content-item">
+                    <div class="img-wrapper">
+                        <img src="{{ 'https://media.themoviedb.org/t/p/w300_and_h450_bestv2' | add:movie.image }}">
+                    </div>
+                    <div class="text-content">
+                        <h5 class="font-body--md-400">{{movie.title}}</h5>
+                        <p class="font-body--md-400"><span class="font-body--md-500">{{ movie.price}} </span></p>
+                    </div>
+                </div>
+                <form action="{% url 'cart:remove_from_cart' movie.id %}" method="post">
+                    {% csrf_token %}
 
-        <div class="shopping-cart__product-content">
-            <div class="shopping-cart__product-content-item">
-                <div class="img-wrapper">
-                    <img src="{% static 'images/products/img.png' %}" alt="product" />
-                </div>
-                <div class="text-content">
-                    <h5 class="font-body--md-400">Epic Indian Adventure</h5>
-                    <p class="font-body--md-400">1 Ticket x <span class="font-body--md-500">$12.00</span></p>
-                </div>
-            </div>
-            <button class="delete-item">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 23C18.0748 23 23 18.0748 23 12C23 5.92525 18.0748 1 12 1C5.92525 1 1 5.92525 1 12C1 18.0748 5.92525 23 12 23Z" stroke="#CCCCCC" stroke-miterlimit="10" />
-                    <path d="M16 8L8 16" stroke="#666666" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M16 16L8 8" stroke="#666666" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-            </button>
-        </div>
+                    <button type="submit" class="delete-item">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 23C18.0748 23 23 18.0748 23 12C23 5.92525 18.0748 1 12 1C5.92525 1 1 5.92525 1 12C1 18.0748 5.92525 23 12 23Z" stroke="#CCCCCC" stroke-miterlimit="10" />
+                            <path d="M16 8L8 16" stroke="#666666" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M16 16L8 8" stroke="#666666" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
 
-        <div class="shopping-cart__product-content">
-            <div class="shopping-cart__product-content-item">
-                <div class="img-wrapper">
-                    <img src="{% static 'images/products/img.png' %}" alt="product" />
-                </div>
-                <div class="text-content">
-                    <h5 class="font-body--md-400">Epic Indian Movie Premiere</h5>
-                    <p class="font-body--md-400">1 Ticket x <span class="font-body--md-500">$12.00</span></p>
-                </div>
+                </form>
             </div>
-            <button class="delete-item">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 23C18.0748 23 23 18.0748 23 12C23 5.92525 18.0748 1 12 1C5.92525 1 1 5.92525 1 12C1 18.0748 5.92525 23 12 23Z" stroke="#CCCCCC" stroke-miterlimit="10" />
-                    <path d="M16 8L8 16" stroke="#666666" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M16 16L8 8" stroke="#666666" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-            </button>
-        </div>
+
+            {% endwith %}
+        {% endfor %}
+
+
     </div>
     <div class="shopping-cart-bottom">
         <div class="shopping-cart-product-info">
-            <p class="product-count font-body--lg-400">2 Tickets</p>
-            <span class="product-price font-body--lg-500">$26.00</span>
+            <p class="product-count font-body--lg-400">Number of movie:  {{cart|length}}</p>
+            <span class="product-price font-body--lg-500">Total Price: {{ cart.get_total_price}} </span>
         </div>
 
-        <form action="#">
-            <button class="button button--lg w-100">Proceed to Checkout</button>
-            <button class="button button--lg button--disable w-100">
-                Go to Cart
-            </button>
+        <button class="button button--lg w-100">Proceed to Checkout</button>
+        <form action="{% url 'cart:cart_detail' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="button button--lg button--lg w-100">Go to Cart</button>
+
         </form>
     </div>
 </div>

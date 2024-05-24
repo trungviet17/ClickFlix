@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.forms import PasswordChangeForm
+from cart.cart import Cart
 
 from .form import UserEditForm, UserRegistrationForm, ProfileForm
 from .models import Profile
@@ -71,4 +72,5 @@ def edit(request):
 
 
 def dashboard(request):
+
     return render(request, "account/dashboard.html")

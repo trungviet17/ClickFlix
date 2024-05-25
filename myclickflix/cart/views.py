@@ -43,4 +43,4 @@ def remove_from_cart_1(request, movie_id):
 
 def cart_detail(request):
     cart = Cart(request)
-    return render(request, "cart/detail.html", {"cart": cart})
+    return render(request, "cart/shopping-cart.html", {"cart": cart})

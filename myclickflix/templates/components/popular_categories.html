@@ -3,7 +3,7 @@
     <div class="container">
         <div class="section__head">
             <h2 class="section--title-one font-title--sm">Popular Categories</h2>
-            <a href="shop-01.html">
+            <a href="{% url 'search_movie' %}">
                 View All
                 <span>
                     <svg width="17" height="15" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -15,201 +15,23 @@
         </div>
         <!-- Desktop Versions -->
         <div class="popular-categories__wrapper">
-            <a href="# " class="cards-sm popular-categories__wrapper-item">
-                <div class="cards-sm__img-wrapper">
-                    <img src="{% static 'images/categories/action.png' %}" alt="img-01" />
-                </div>
-                <h5 class="font-body--xl-500">Action movie</h5>
-            </a>
-
-            <a href="# " class="cards-sm popular-categories__wrapper-item">
-                <div class="cards-sm__img-wrapper">
-                    <img src="{% static 'images/categories/action.png' %}" alt="img-01" />
-                </div>
-                <h5 class="font-body--xl-500">Action movie</h5>
-            </a>
-
-            <a href="# " class="cards-sm popular-categories__wrapper-item">
-                <div class="cards-sm__img-wrapper">
-                    <img src="{% static 'images/categories/action.png' %}" alt="img-01" />
-                </div>
-                <h5 class="font-body--xl-500">Action movie</h5>
-            </a>
-
-            <a href="# " class="cards-sm popular-categories__wrapper-item">
-                <div class="cards-sm__img-wrapper">
-                    <img src="{% static 'images/categories/action.png' %}" alt="img-01" />
-                </div>
-                <h5 class="font-body--xl-500">Action movie</h5>
-            </a>
-
-            <a href="# " class="cards-sm popular-categories__wrapper-item">
-                <div class="cards-sm__img-wrapper">
-                    <img src="{% static 'images/categories/action.png' %}" alt="img-01" />
-                </div>
-                <h5 class="font-body--xl-500">Action movie</h5>
-            </a>
-
-            <a href="# " class="cards-sm popular-categories__wrapper-item">
-                <div class="cards-sm__img-wrapper">
-                    <img src="{% static 'images/categories/action.png' %}" alt="img-01" />
-                </div>
-                <h5 class="font-body--xl-500">Action movie</h5>
-            </a>
-
-            <a href="# " class="cards-sm popular-categories__wrapper-item">
-                <div class="cards-sm__img-wrapper">
-                    <img src="{% static 'images/categories/action.png' %}" alt="img-01" />
-                </div>
-                <h5 class="font-body--xl-500">Action movie</h5>
-            </a>
-
-            <a href="# " class="cards-sm popular-categories__wrapper-item">
-                <div class="cards-sm__img-wrapper">
-                    <img src="{% static 'images/categories/action.png' %}" alt="img-01" />
-                </div>
-                <h5 class="font-body--xl-500">Action movie</h5>
-            </a>
-
-            <a href="# " class="cards-sm popular-categories__wrapper-item">
-                <div class="cards-sm__img-wrapper">
-                    <img src="{% static 'images/categories/action.png' %}" alt="img-01" />
-                </div>
-                <h5 class="font-body--xl-500">Action movie</h5>
-            </a>
-
-            <a href="# " class="cards-sm popular-categories__wrapper-item">
-                <div class="cards-sm__img-wrapper">
-                    <img src="{% static 'images/categories/action.png' %}" alt="img-01" />
-                </div>
-                <h5 class="font-body--xl-500">Action movie</h5>
-            </a>
-
-            <a href="# " class="cards-sm popular-categories__wrapper-item">
-                <div class="cards-sm__img-wrapper">
-                    <img src="{% static 'images/categories/action.png' %}" alt="img-01" />
-                </div>
-                <h5 class="font-body--xl-500">Action movie</h5>
-            </a>
-
-            <a href="# " class="cards-sm popular-categories__wrapper-item">
-                <div class="cards-sm__img-wrapper">
-                    <img src="{% static 'images/categories/action.png' %}" alt="img-01" />
-                </div>
-                <h5 class="font-body--xl-500">Action movie</h5>
-            </a>
+            {% for category in categories %}
+                <a href="{% url 'search_movie'  %}?categories={{ category.id }}" class="cards-sm popular-categories__wrapper-item">
+                    <h5 class="font-body--xl-500">{{ category.name }}</h5>
+                </a>
+            {% endfor %}
         </div>
 
         <!-- Mobile  Versions -->
         <div class="swiper-container popular-categories--slider">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <a href="# " class="cards-sm popular-categories__wrapper-item">
-                        <div class="cards-sm__img-wrapper">
-                            <img src="{% static 'images/categories/action.png' %}" alt="img-01" />
-                        </div>
-                        <h5 class="font-body--xl-500">Action movie</h5>
-                    </a>
-                </div>
-
-                <div class="swiper-slide">
-                    <a href="# " class="cards-sm popular-categories__wrapper-item">
-                        <div class="cards-sm__img-wrapper">
-                            <img src="{% static 'images/categories/action.png' %}" alt="img-01" />
-                        </div>
-                        <h5 class="font-body--xl-500">Action movie</h5>
-                    </a>
-                </div>
-
-                <div class="swiper-slide">
-                    <a href="# " class="cards-sm popular-categories__wrapper-item">
-                        <div class="cards-sm__img-wrapper">
-                            <img src="{% static 'images/categories/action.png' %}" alt="img-01" />
-                        </div>
-                        <h5 class="font-body--xl-500">Action movie</h5>
-                    </a>
-                </div>
-
-                <div class="swiper-slide">
-                    <a href="# " class="cards-sm popular-categories__wrapper-item">
-                        <div class="cards-sm__img-wrapper">
-                            <img src="{% static 'images/categories/action.png' %}" alt="img-01" />
-                        </div>
-                        <h5 class="font-body--xl-500">Action movie</h5>
-                    </a>
-                </div>
-
-                <div class="swiper-slide">
-                    <a href="# " class="cards-sm popular-categories__wrapper-item">
-                        <div class="cards-sm__img-wrapper">
-                            <img src="{% static 'images/categories/action.png' %}" alt="img-01" />
-                        </div>
-                        <h5 class="font-body--xl-500">Action movie</h5>
-                    </a>
-                </div>
-
-                <div class="swiper-slide">
-                    <a href="# " class="cards-sm popular-categories__wrapper-item">
-                        <div class="cards-sm__img-wrapper">
-                            <img src="{% static 'images/categories/action.png' %}" alt="img-01" />
-                        </div>
-                        <h5 class="font-body--xl-500">Action movie</h5>
-                    </a>
-                </div>
-
-                <div class="swiper-slide">
-                    <a href="# " class="cards-sm popular-categories__wrapper-item">
-                        <div class="cards-sm__img-wrapper">
-                            <img src="{% static 'images/categories/action.png' %}" alt="img-01" />
-                        </div>
-                        <h5 class="font-body--xl-500">Action movie</h5>
-                    </a>
-                </div>
-
-                <div class="swiper-slide">
-                    <a href="# " class="cards-sm popular-categories__wrapper-item">
-                        <div class="cards-sm__img-wrapper">
-                            <img src="{% static 'images/categories/action.png' %}" alt="img-01" />
-                        </div>
-                        <h5 class="font-body--xl-500">Action movie</h5>
-                    </a>
-                </div>
-
-                <div class="swiper-slide">
-                    <a href="# " class="cards-sm popular-categories__wrapper-item">
-                        <div class="cards-sm__img-wrapper">
-                            <img src="{% static 'images/categories/action.png' %}" alt="img-01" />
-                        </div>
-                        <h5 class="font-body--xl-500">Action movie</h5>
-                    </a>
-                </div>
-
-                <div class="swiper-slide">
-                    <a href="# " class="cards-sm popular-categories__wrapper-item">
-                        <div class="cards-sm__img-wrapper">
-                            <img src="{% static 'images/categories/action.png' %}" alt="img-01" />
-                        </div>
-                        <h5 class="font-body--xl-500">Action movie</h5>
-                    </a>
-                </div>
-
-                <div class="swiper-slide">
-                    <a href="# " class="cards-sm popular-categories__wrapper-item">
-                        <div class="cards-sm__img-wrapper">
-                            <img src="{% static 'images/categories/action.png' %}" alt="img-01" />
-                        </div>
-                        <h5 class="font-body--xl-500">Action movie</h5>
-                    </a>
-                </div>
-
-                <div class="swiper-slide">
-                    <a href="# " class="cards-sm popular-categories__wrapper-item">
-                        <div class="cards-sm__img-wrapper">
-                            <img src="{% static 'images/categories/action.png' %}" alt="img-01" />
-                        </div>
-                        <h5 class="font-body--xl-500">Action movie</h5>
-                    </a>
-                </div>
+                {% for category in categories %}
+                    <div class="swiper-slide">
+                        <a href="{% url 'search_movie'  %}?categories={{ category.id }}" class="cards-sm popular-categories__wrapper-item">
+                            <h5 class="font-body--xl-500">{{ category.name }}</h5>
+                        </a>
+                    </div>
+                {% endfor %}
             </div>
             <div class="swiper-pagination"></div>
         </div>

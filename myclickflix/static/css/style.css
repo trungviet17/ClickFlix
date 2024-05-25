@@ -60,6 +60,41 @@
 -------------------------------------------------------------------------------*/
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 @import url("https://fonts.cdnfonts.com/css/segoe-script");
+
+.actor-name {
+  color: #FF6347;
+  font-weight: bold;
+  text-shadow: 2px 2px #FFD700;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.actor-birthday,
+.actor-bio {
+  color: #4682B4;
+  background-color: #F0F8FF;
+  padding: 10px;
+  border-radius: 5px;
+  animation: slideIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  0% {
+      transform: translateX(-100%);
+  }
+  100% {
+      transform: translateX(0);
+  }
+}
+
 .font-title--xxxl {
   font-size: 72px;
   font-weight: 600;

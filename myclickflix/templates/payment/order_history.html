@@ -277,7 +277,7 @@
                               <td
                                   class="dashboard__order-history-table-item order-id"
                               >
-                                  #738
+                                  #{{ order.id }}
                               </td>
                               <!-- Date  -->
                               <td
@@ -315,15 +315,15 @@
                                   order-details
                                   "
                               >
-                                  {% if order.state != order.TypeofState.PAID   %}
-                                      <form action="{% url 'payment:process' %}" method="post">
+                                  {% if order.state != "paid"   %}
+                                      <form action="{% url 'payment:process' order.id %}" method="post">
                                           <input type="submit" value="Pay now">
                                           {% csrf_token %}
                                       </form>
                                   {% else %}
-                                      <h2 class="order-history-item-title">Payment is done</h2>
+                                      <p class="order-history-item-title">Payment is done</p>
                                   {% endif %}
-                                  <a href="order-details.html"> View Details</a>
+                                  <a href="{% url 'payment:order_detail' order.id %}"> View Details</a>
                               </td>
                               </tr>
                           {% endfor %}

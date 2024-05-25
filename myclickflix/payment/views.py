@@ -17,14 +17,12 @@ stripe.api_version = settings.STRIPE_API_VERSION
 
 
 @login_required
-def payment_process(request):
+def payment_process(request, order_id):
 
-    order_id = create_order(request)
     order = get_object_or_404(Order, id=order_id)
 
     if request.method == "POST":
-        cart = Cart(request)
-        cart.clear()
+
         success_url = request.build_absolute_uri(
             reverse("payment:completed", kwargs={"order_id": order_id})
         )
@@ -103,7 +101,9 @@ def create_order(request):
     order.total_amount = order.get_total_amount()
     order.state = Order.TypeOfState.PAYING
     order.save()
-    return order.id
+    cart.clear()
+
+    return render(request, "payment/process.html", {"order": order})
 
 
 @login_required
@@ -150,3 +150,12 @@ def order_history(request):
     orders = Order.objects.filter(profile=request.user.profile).all()
 
     return render(request, "payment/order_history.html", {"orders": orders})
+
+
+def order_detail(request, order_id):
+    order = get_object_or_404(Order, id=order_id)
+    if order.state == Order.TypeOfState.PAID:
+
+        return render(request, "payment/detail.html", {"order": order})
+
+    return render(request, "payment/process.html", {"order": order})

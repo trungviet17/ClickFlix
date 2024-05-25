@@ -267,7 +267,7 @@
 
 
                     {% if cart|length > 0 %}
-                    <form method="post" action="{% url 'payment:process' %}">
+                    <form method="post" action="{% url 'payment:create_order' %}">
                         <button
                         class="button button--lg w-100"
                         style="margin-top: 20px"

@@ -58,7 +58,7 @@
                     <div class="cards-md">
                         <div class="cards-md__img-wrapper">
                             <a href="{% url 'movie_detail' movie_slug=movie.movie.slug %}">
-                                <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{ movie.movie.image }}"/>
+                                <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{ movie.image }}" onerror="this.onerror=null;this.src='{% static 'images/products/movie.jpg' %}';" alt="products" />
                             </a>
                             <!-- <span class="tag danger font-body--md-400">sale 50%</span> -->
                             <!-- <div class="cards-md__favs-list">
@@ -91,7 +91,7 @@
                             <a href="" class="cards-md__info-left">
                                 <h6 class="font-body--md-400">{{ movie.movie.title }}</h6>
                                 <div class="cards-md__info-price">
-                                    <span class="font-body--lg-500">Popularity: {{ movie.popularity }}</span>
+                                    <span class="font-body--lg-500">Popularity: {{ movie.movie.popularity }}</span>
                                 </div>
                             </a>
                             <!-- <div class="cards-md__info-right">
@@ -119,7 +119,7 @@
                         <div class="swiper-slide">
                             <div class="cards-md w-100">
                                 <div class="cards-md__img-wrapper">
-                                    <a href="">
+                                    <a href=" {% url 'movie_detail' movie_slug=movie.movie.slug %}">
                                         <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{ movie.image }}" onerror="this.onerror=null;this.src='{% static 'images/products/movie.jpg' %}';" alt="products" />
                                     </a>
                                     <div class="cards-md__favs-list">
@@ -150,10 +150,7 @@
                                 </div>
                                 <div class="cards-md__info d-flex justify-content-between align-items-center">
                                     <a href="" class="cards-md__info-left">
-                                        <h6 class="font-body--md-400">{{ movie.title }}</h6>
-                                        <div class="cards-md__info-price">
-                                            <span class="font-body--lg-500">${{ movie.price }}</span>
-                                        </div>
+                                        <h6 class="font-body--md-400">{{ movie.movie.title }}</h6>
                                     </a>
                                     <div class="cards-md__info-right">
                                         <span class="action-btn">

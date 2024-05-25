@@ -74,4 +74,5 @@ def dashboard(request):
 
 
 def profile(request):
-    return render(request, "account/profile.html")
+    profile = Profile.objects.get(user=request.user)
+    return render(request, "account/profile.html", {"profile": profile})

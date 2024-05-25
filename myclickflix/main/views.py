@@ -9,6 +9,7 @@ from main.models import Movie, Actor, Category
 from account.models import Profile
 from main.forms import MovieFilterForm
 from main.recommend import recommend
+from payment.models import PurchasedMovie
 
 
 def move_list(request):
@@ -41,12 +42,21 @@ def movie_detail(request, movie_slug):
     categories = movie.categories.all()
     recommendations = recommend(movie.id)
     recommendations = Movie.objects.filter(id__in=recommendations)
+    if not request.user.is_authenticated == None:
+        is_purchased = False
+    else:
+        is_purchased = PurchasedMovie.objects.filter(
+            movie_id=movie.id, profile_id=request.user.profile.id
+        ).exists()
     context = {
         "movie": movie,
         "actors": actors,
         "categories": categories,
         "recommendations": recommendations,
+        "is_purchased": is_purchased,
     }
+
+    print(is_purchased)
     return render(request, "product/product-detals.html", context=context)
 
 

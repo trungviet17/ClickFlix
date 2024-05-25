@@ -14,13 +14,28 @@
           {{ item.movie.title }}
           <span>${{ item.movie.price }}</span>
         </li>
+
+
+        <form action="{% url 'cart:remove_from_cart' item.movie.id %}" method="post">
+          {% csrf_token %}
+          <input type="submit" value="Remove">
+          <input type="hidden" name="next" value="{{ request.path }}">
+        </form>
       {% endfor %}
     </ul>
+
     <p>Total: ${{ cart.get_total_price }}</p>
   </div>
+
+  {% if cart.get_total_price > 0 %}
   <form method="post" action="{% url 'payment:create_order' %}">
 
     <input type="submit" value="Place order">
     {% csrf_token %}
   </form>
+  {% else %}
+    <p>Your Cart is empty </p>
+
+    <a href="{% url 'dashboard' %}">Buy More</a>
+  {% endif %}
 {% endblock %}

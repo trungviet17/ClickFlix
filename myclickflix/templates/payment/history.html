@@ -1,0 +1,25 @@
+<h1> Order history </h1>
+
+
+<div class="order-history">
+    {% for order in orders %}
+        <div class="order-history-item">
+            <h2 class="order-history-item-title">Create_at: {{ order.created_at }}</h2>
+            <h2 class="order-history-item-title">Total Amount: {{ order.total_amount }}</h2>
+            <h2 class="order-history-item-title">Status: {{ order.state }}</h2>
+
+        </div>
+
+        {% if order.state != order.TypeofState.PAID   %}
+
+            <form action="{% url 'payment:process' %}" method="post">
+                <input type="submit" value="Pay now">
+                {% csrf_token %}
+            </form>
+        {% else %}
+            <h2 class="order-history-item-title">Payment is done</h2>
+        {% endif %}
+
+    {% endfor %}
+
+</div>

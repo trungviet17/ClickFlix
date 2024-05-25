@@ -17,9 +17,17 @@ class PurchasedMovie(TimeStampMixin):
 
 
 class Order(TimeStampMixin):
+    class TypeOfState(models.TextChoices):
+        PAYING = "paying"
+        PAID = "paid"
+        CANCELED = "canceled"
+
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
     total_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    state = models.CharField(
+        max_length=10, choices=TypeOfState.choices, default=TypeOfState.PAYING
+    )
 
     def get_total_amount(self):
         return sum(item.price for item in self.items.all())

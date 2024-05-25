@@ -89,3 +89,7 @@ def dashboard(request):
         "latest_movies": latest_movies,
     }
     return render(request, "account/dashboard.html", context=context)
+
+
+def profile(request):
+    return render(request, "account/profile.html")

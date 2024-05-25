@@ -105,7 +105,7 @@ def create_order(request):
         # redirect for payment
         return redirect(reverse("payment:process"))
 
-    return render(request, "payment/create_order.html", {"cart": cart})
+    return render(request, "payment/checkout.html", {"cart": cart})
 
 
 @login_required
@@ -151,4 +151,4 @@ def delete_order(request):
 def order_history(request):
     orders = Order.objects.filter(profile=request.user.profile).all()
 
-    return render(request, "payment/history.html", {"orders": orders})
+    return render(request, "payment/order_history.html", {"orders": orders})

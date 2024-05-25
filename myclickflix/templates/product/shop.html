@@ -91,22 +91,22 @@
                                         <div class="accordion-body shop-body">
                                             <div class="categories">
                                                 <form method="GET">
-                                                    {{ form.as_p }}
-                                                    {% for category in form.id_categories %}
+                                                    {% for category in form.categories %}
                                                         <div class="categories-item">
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox" name="category" id="fruit" />
-                                                                <label class="form-check-label" for="fruit"> Fresh Fruit (25) <span class="current">(134)</span> </label>
+                                                                <label class="form-check-label" for="fruit"> {{ category }}</label>
                                                             </div>
                                                         </div>
                                                     {% endfor %}
-                                                    <button type="submit">Filter</button>
+                                                    <button type="submit" class="btn btn-primary">Apply</button>
                                                 </form>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Price Range -->
+                            </div>
+                            <!-- Price Range -->
+                            <div class="accordion shop" id="shop">
                                 <div class="accordion-item shop-item">
                                     <h2 class="accordion-header" id="shop-item-accordion--two">
                                         <button class="accordion-button shop-button font-body--xxl-500 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -119,8 +119,22 @@
                                         </button>
                                     </h2>
                                     <div id="collapseTwo" class="accordion-collapse shop-collapse collapse show" aria-labelledby="shop-item-accordion--two" data-bs-parent="#shop">
-                                        <div class="price-range-slider">
-                                            <div id="priceRangeSlider" ></div>
+                                        <div class="accordion-body">
+                                            <form method="GET">
+                                                <div class="price-input">
+                                                    <label for="price_min">Min Price</label>
+                                                    {{ form.price_min }}
+                                                </div>
+                                                <div class="price-input">
+                                                    <label for="price_max">Max Price</label>
+                                                    {{ form.price_max }}
+                                                </div>
+
+                                                <button type="submit" class="btn btn-primary">Apply</button>
+                                            </form>
+                                            <!-- <div class="price-range-slider">
+                                                <div id="priceRangeSlider"></div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>

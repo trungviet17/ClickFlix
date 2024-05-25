@@ -1,46 +1,163 @@
 {% extends "components/base.html" %}
 {% load static %}
 
-{% block title %}Pay your order{% endblock %}
+{% block title %}Pay your order | ClickFlix{% endblock %}
 
 {% block content %}
-  <h1>Order summary</h1>
-  <table class="cart">
-    <thead>
-      <tr>
-        <th>Image</th>
-        <th>Product</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Total</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for item in order.items.all %}
-        <tr class="row{% cycle '1' '2' %}">
-          <td>
-            <img src="{{ 'https://media.themoviedb.org/t/p/w300_and_h450_bestv2' | add:item.movie.image }}">
-          </td>
-          <td>{{ item.product.name }}</td>
-          <td class="num">${{ item.price }}</td>
+    <!-- Header Section start -->
+    {% if user.is_authenticated %}
+    {% include "components/header_login.html" %}
+    {% else %}
+    {% include "components/header.html" %}
+    {% endif %}
+    <!-- Header  Section start -->
+    <!-- breedcrumb section start  -->
+    <div class="section breedcrumb">
+      <div class="breedcrumb__img-wrapper">
+      <img src="{% static 'images/banner/breedcrumb.jpg' %}" alt="breedcrumb" />
+      <div class="container">
+          <ul class="breedcrumb__content">
+          <li>
+              <a href="index.html">
+              <svg
+                  width="18"
+                  height="19"
+                  viewBox="0 0 18 19"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+              >
+                  <path
+                  d="M1 8L9 1L17 8V18H12V14C12 13.2044 11.6839 12.4413 11.1213 11.8787C10.5587 11.3161 9.79565 11 9 11C8.20435 11 7.44129 11.3161 6.87868 11.8787C6.31607 12.4413 6 13.2044 6 14V18H1V8Z"
+                  stroke="#808080"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  />
+              </svg>
+              <span> > </span>
+              </a>
+          </li>
+          <li class="active">
+              <a href="shopping-cart.html">Order Summary</a>
+          </li>
+          </ul>
+      </div>
+      </div>
+    </div>
+    <!-- breedcrumb section end   -->
+    <!-- Shopping Cart Section Start   -->
+    <section class="shoping-cart section section--xl">
+        <div class="container">
+          <div class="section__head justify-content-center">
+            <h2 class="section--title-four font-title--sm">Order Summary</h2>
+          </div>
+          <div class="row shoping-cart__content">
+            <div class="col-lg-8">
+              <div class="cart-table">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col" class="cart-table-title">Movie</th>
+                        <th scope="col" class="cart-table-title">Price</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in order.items.all %}
+                            <tr>
+                                <!-- Product item  -->
+                                <td class="cart-table-item align-middle">
+                                <a
+                                    href="{% url 'movie_detail' movie_slug=item.movie.slug %}"
+                                    class="cart-table__product-item"
+                                >
+                                    <div class="cart-table__product-item-img">
+                                        <img
+                                        src="{{ 'https://media.themoviedb.org/t/p/w300_and_h450_bestv2' | add:item.movie.image }}"
+                                            alt="product"
+                                        />
+                                    </div>
+                                    <h5 class="font-body--lg-400">{{ item.product.name }}</h5>
+                                </a>
+                                </td>
+                                <!-- Price  -->
+                                <td class="cart-table-item order-subtotal align-middle">
+                                <div
+                                    class="
+                                    d-flex
+                                    justify-content-between
+                                    align-items-center
+                                    "
+                                >
+                                    <p class="font-body--md-500">${{ item.price }}</p>
+                                    <!-- <p class="font-body--md-500">{{ item.get_cost }}</p> -->
+                                </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!-- Mobile View -->
+              <div class="shoping-cart__mobile">
+                {% for item in order.items.all %}
+                    <div class="shoping-card">
+                        <h5 class="shoping-card__product-caption font-body--lg-400">
+                            {{ item.product.name }}
+                        </h5>
+                        <h6 class="shoping-card__product-totalprice font-body--lg-600">
+                            ${{ item.price }}
+                        </h6>
+                    </div>
+                {% endfor %}
+              </div>
+            </div>
 
-          <td class="num">${{ item.get_cost }}</td>
-        </tr>
-      {% endfor %}
-      <tr class="total">
-        <td colspan="4">Total</td>
-        <td class="num">${{ order.get_total_cost }}</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <form action="{% url 'payment:process' %}" method="post">
-    <input type="submit" value="Pay now">
-    {% csrf_token %}
-  </form>
-
-
-
+            <div class="col-lg-4">
+              <div class="bill-card">
+                <div class="bill-card__content">
+                  <div class="bill-card__header">
+                    <h2 class="bill-card__header-title font-body--xxl-500">
+                      Order Summery
+                    </h2>
+                  </div>
+                  <div class="bill-card__body">
+                    <!-- memo  -->
+                    <div class="bill-card__memo">
+                      <!-- total  -->
+                      <div class="bill-card__memo-item total">
+                        <p class="font-body--lg-400">Total:</p>
+                        <span class="font-body--xl-500">${{ order.get_total_cost }}</span>
+                      </div>
+                    </div>
+                    <form method="post" action="{% url 'payment:process' %}">
+                        <button
+                        class="button button--lg w-100"
+                        style="margin-top: 20px"
+                        type="submit"
+                        >
+                          Pay now
+                        </button>
+                        {% csrf_token %}
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+    <!-- Shopping Cart Section End    -->
+    <!-- cal-to-action Section Start  -->
+    {% include 'components/subcribe.html' %}
+    <!-- cal-to-action Section end  -->
+    <!--Footer Section Start  -->
+    {% include 'components/footer.html' %}
+    <!--Footer Section end  -->
+    <!-- Shopping Cart sidebar  start  -->
+    {% include "components/cart_sidebar.html" %}
+    <!-- Shopping Cart sidebar  end -->
     <script type="text/javascript" src="{% static 'lib/js/jquery.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'lib/js/swiper-bundle.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'lib/js/bvselect.js' %}"></script>

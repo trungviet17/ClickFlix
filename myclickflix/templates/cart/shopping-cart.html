@@ -38,7 +38,7 @@
                 </a>
             </li>
             <li class="active">
-                <a href="shopping-cart.html">Shopping cart</a>
+                <a href="{% url 'cart:cart_detail' %}">Shopping cart</a>
             </li>
             </ul>
         </div>
@@ -262,7 +262,7 @@
                         <span class="font-body--xl-500">{{ cart.get_total_price }}</span>
                       </div>
                     </div>
-                    <form action="#">
+                    <form action="{% url 'payment:process' %}">
                       <button
                         class="button button--lg w-100"
                         style="margin-top: 20px"

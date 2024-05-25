@@ -6,7 +6,6 @@ app_name = "payment"
 
 urlpatterns = [
     path("recharge/", views.recharge_account, name="recharge"),
-    path("create-order/", views.create_order, name="create_order"),
     path("process/", views.payment_process, name="process"),
     path("completed/<int:order_id>", views.payment_completed, name="completed"),
     path("canceled/<int:order_id>", views.payment_canceled, name="canceled"),

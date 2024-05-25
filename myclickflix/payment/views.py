@@ -18,10 +18,13 @@ stripe.api_version = settings.STRIPE_API_VERSION
 
 @login_required
 def payment_process(request):
-    order_id = request.session.get("order_id", None)
+
+    order_id = create_order(request)
     order = get_object_or_404(Order, id=order_id)
 
     if request.method == "POST":
+        cart = Cart(request)
+        cart.clear()
         success_url = request.build_absolute_uri(
             reverse("payment:completed", kwargs={"order_id": order_id})
         )
@@ -91,21 +94,16 @@ def payment_canceled(request, order_id):
 def create_order(request):
     cart = Cart(request)
 
-    if request.method == "POST":
-        order = Order.objects.create(profile=request.user.profile)
-        for item in cart:
-            OrderDetail.objects.create(
-                order=order, movie=item["movie"], price=item["price"]
-            )
-        cart.clear()
-        order.total_amount = order.get_total_amount()
-        order.state = Order.TypeOfState.PAYING
-        order.save()
-        request.session["order_id"] = order.id
-        # redirect for payment
-        return redirect(reverse("payment:process"))
+    order = Order.objects.create(profile=request.user.profile)
+    for item in cart:
+        OrderDetail.objects.create(
+            order=order, movie=item["movie"], price=item["price"]
+        )
 
-    return render(request, "payment/create_order.html", {"cart": cart})
+    order.total_amount = order.get_total_amount()
+    order.state = Order.TypeOfState.PAYING
+    order.save()
+    return order.id
 
 
 @login_required

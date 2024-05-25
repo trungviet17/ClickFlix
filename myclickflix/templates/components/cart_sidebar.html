@@ -48,7 +48,7 @@
             <p class="product-count font-body--lg-400">Number of movie:  {{cart|length}}</p>
             <span class="product-price font-body--lg-500">Total Price: {{ cart.get_total_price}} </span>
         </div>
-        <form action="{% url 'payment:create_order' %}" method="get">
+        <form action="{% url 'payment:process' %}" method="get">
             {% csrf_token %}
             <button type="submit" class="button button--lg w-100">Proceed to Checkout</button>
         </form>

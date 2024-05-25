@@ -315,9 +315,9 @@
                                   order-details
                                   "
                               >
-                                  {% if order.state != "paid"   %}
+                                  {% if order.state != "paid" %}
                                       <form action="{% url 'payment:process' order.id %}" method="post">
-                                          <input type="submit" value="Pay now">
+                                          <input class="button button--md" type="submit" value="Pay now">
                                           {% csrf_token %}
                                       </form>
                                   {% else %}

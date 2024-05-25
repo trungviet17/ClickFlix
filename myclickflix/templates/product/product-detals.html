@@ -141,12 +141,6 @@
                     <!-- brand  -->
                     <div class="products__content">
                         <div class="products__content-brand">
-                            <div class="brand-name">
-                                <h2 class="font-body--md-400">Brand:</h2>
-                                <a href="#" class="brand-name-logo">
-                                    <img src="{% static 'images/brand-icon/brand-img.png' %}" alt="brand-img" />
-                                </a>
-                            </div>
                             <div class="social-site">
                                 <h2 class="font-body--md-400">Share item:</h2>
                                 <ul class="social-icon">
@@ -300,20 +294,17 @@
                             {{ movie.overview }}
                         </p>
                     </div>
-                    <div class="col-lg-5 order-lg-0 order-1">
-                        <div class="products-video">
-                            <img src="{% static 'images/members/img-11.jpg' %}" alt="img-src" />
-                            <a href="https://youtu.be/JkaxUblCGz0" class="play-icon venobox" data-autoplay="true"
-                                data-vbtype="video">
-                                <span>
-                                    <svg width="14" height="18" viewBox="0 0 14 18" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M0 0V18L14 9L0 0Z" fill="currentColor" />
-                                    </svg>
-                                </span>
-                            </a>
-                        </div>
-
+                    <div class="products-video">
+                        <img src="{% static 'images/members/img-11.jpg' %}" alt="img-src" />
+                        <a href="https://youtu.be/JkaxUblCGz0" class="play-icon venobox" data-autoplay="true"
+                            data-vbtype="video">
+                            <span>
+                                <svg width="14" height="18" viewBox="0 0 14 18" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0 0V18L14 9L0 0Z" fill="currentColor" />
+                                </svg>
+                            </span>
+                        </a>
                     </div>
                 </div>
                 </div>
@@ -688,7 +679,7 @@
                     <div class="cards-md cards-md--four w-100">
                         <div class="cards-md__img-wrapper">
                             <a href="{% url 'movie_detail' movie_slug=movie.slug %}">
-                                <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{ movie.image }}"
+                                <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{ movie.image }}" onerror="this.onerror=null;this.src='{% static 'images/products/movie.jpg' %}';"
                                     alt="products"
                                     style="width: 250px; height: 400px; display: block; margin: 0 auto;" />
                             </a>
@@ -702,7 +693,7 @@
                                             stroke="currentColor" stroke-width="1.5"></path>
                                     </svg>
                                 </span> -->
-                                <span class="action-btn" data-bs-toggle="modal" data-bs-target="#productView">
+                                <!-- <span class="action-btn" data-bs-toggle="modal" data-bs-target="#productView">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -714,7 +705,7 @@
                                             stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                                             stroke-linejoin="round"></path>
                                     </svg>
-                                </span>
+                                </span> -->
 
                             </div>
                         </div>

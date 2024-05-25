@@ -35,6 +35,9 @@ class Order(TimeStampMixin):
     def get_stripe_url(self):
         pass
 
+    def __str__(self):
+        return f"Order_id_{self.id}"
+
 
 class OrderDetail(TimeStampMixin):
 
@@ -47,7 +50,7 @@ class OrderDetail(TimeStampMixin):
     order = models.ForeignKey(Order, related_name="items", on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.id
+        return f"Order_detail_{self.id}"
 
 
 class RechargeCode(TimeStampMixin):

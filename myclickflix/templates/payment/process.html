@@ -131,6 +131,8 @@
                         <span class="font-body--xl-500">${{ order.get_total_cost }}</span>
                       </div>
                     </div>
+
+                    {% if order.items|length > 0 %}
                     <form method="post" action="{% url 'payment:process' %}">
                         <button
                         class="button button--lg w-100"
@@ -141,6 +143,11 @@
                         </button>
                         {% csrf_token %}
                     </form>
+                    {% else %}
+                      <p>Your Cart is empty </p>
+                      <a href="{% url 'dashboard' %}">Buy More</a>
+                    {% endif %}
+
                   </div>
                 </div>
               </div>

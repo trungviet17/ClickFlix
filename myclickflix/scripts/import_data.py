@@ -1,6 +1,8 @@
 import pandas as pd
 from tqdm import tqdm
 import os
+import random
+
 from main.models import Actor, Category, Movie
 
 FOLDER_PATH = os.path.join("..", "Data")
@@ -42,7 +44,7 @@ def run_movie():
                 language=row["language"],
                 released=row["released"],
                 image=row["image"],
-                price=2,
+                price=random.randint(200, 500) / 100,
                 pk=row["TMDB_id"],
             )
             movie.set_keyword(row["keyword"])

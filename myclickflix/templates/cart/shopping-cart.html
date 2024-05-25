@@ -262,15 +262,25 @@
                         <span class="font-body--xl-500">{{ cart.get_total_price }}</span>
                       </div>
                     </div>
-                    <form action="{% url 'payment:create_order' %}">
-                      <button
+
+
+
+
+                    {% if cart|length > 0 %}
+                    <form method="post" action="{% url 'payment:process' %}">
+                        <button
                         class="button button--lg w-100"
                         style="margin-top: 20px"
                         type="submit"
-                      >
-                        Checkout
-                      </button>
+                        >
+                          Checkout
+                        </button>
+                        {% csrf_token %}
                     </form>
+                    {% else %}
+                      <p>Your Cart is empty </p>
+                      <a href="{% url 'search_movie' %}">Buy More</a>
+                    {% endif %}
                   </div>
                 </div>
               </div>

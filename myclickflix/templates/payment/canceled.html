@@ -1,0 +1,15 @@
+{% extends "components/base.html" %}
+{% load static %}
+{% block title %}Payment canceled{% endblock %}
+
+{% block content %}
+  <h1>Your payment has not been processed</h1>
+  <p>There was a problem processing your payment.</p>
+
+
+    <script type="text/javascript" src="{% static 'lib/js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'lib/js/swiper-bundle.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'lib/js/bvselect.js' %}"></script>
+    <script type="text/javascript" src="{% static 'lib/js/bootstrap.bundle.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+{% endblock %}

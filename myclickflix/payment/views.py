@@ -17,11 +17,12 @@ stripe.api_version = settings.STRIPE_API_VERSION
 
 
 @login_required
-def payment_process(request):
-    order_id = request.session.get("order_id", None)
+def payment_process(request, order_id):
+
     order = get_object_or_404(Order, id=order_id)
 
     if request.method == "POST":
+
         success_url = request.build_absolute_uri(
             reverse("payment:completed", kwargs={"order_id": order_id})
         )
@@ -91,21 +92,18 @@ def payment_canceled(request, order_id):
 def create_order(request):
     cart = Cart(request)
 
-    if request.method == "POST":
-        order = Order.objects.create(profile=request.user.profile)
-        for item in cart:
-            OrderDetail.objects.create(
-                order=order, movie=item["movie"], price=item["price"]
-            )
-        cart.clear()
-        order.total_amount = order.get_total_amount()
-        order.state = Order.TypeOfState.PAYING
-        order.save()
-        request.session["order_id"] = order.id
-        # redirect for payment
-        return redirect(reverse("payment:process"))
+    order = Order.objects.create(profile=request.user.profile)
+    for item in cart:
+        OrderDetail.objects.create(
+            order=order, movie=item["movie"], price=item["price"]
+        )
 
-    return render(request, "payment/checkout.html", {"cart": cart})
+    order.total_amount = order.get_total_amount()
+    order.state = Order.TypeOfState.PAYING
+    order.save()
+    cart.clear()
+
+    return render(request, "payment/process.html", {"order": order})
 
 
 @login_required
@@ -152,3 +150,12 @@ def order_history(request):
     orders = Order.objects.filter(profile=request.user.profile).all()
 
     return render(request, "payment/order_history.html", {"orders": orders})
+
+
+def order_detail(request, order_id):
+    order = get_object_or_404(Order, id=order_id)
+    if order.state == Order.TypeOfState.PAID:
+
+        return render(request, "payment/detail.html", {"order": order})
+
+    return render(request, "payment/process.html", {"order": order})

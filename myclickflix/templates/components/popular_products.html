@@ -4,7 +4,7 @@
     <div class="container">
         <div class="section__head">
             <h2 class="section--title-one font-title--sm">Popular movies</h2>
-            <a href="shop-01.html">
+            <a href="{% url 'search_movie' %}">
                 View All
                 <span>
                     <svg width="17" height="15" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -86,7 +86,7 @@
                         <div class="cards-md w-100">
                             <div class="cards-md__img-wrapper">
                                 <a href="{% url 'movie_detail' movie_slug=movie.slug %}">
-                                    <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{ movie.image }}" alt="products" />
+                                    <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{ movie.image }}" onerror="this.onerror=null;this.src='{% static 'images/products/movie.jpg' %}';" alt="products" />
                                 </a>
                                 <div class="cards-md__favs-list">
                                     <span class="action-btn">

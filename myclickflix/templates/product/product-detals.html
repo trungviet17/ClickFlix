@@ -741,7 +741,7 @@
                             <div class="cards-md cards-md--four w-100">
                                 <div class="cards-md__img-wrapper">
                                     <a href="{% url 'movie_detail' movie_slug=movie.slug %}">
-                                        <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{ movie.image }}" alt="products" style="width: 250px; height: 400px; display: block; margin: 0 auto;" />
+                                        <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{ movie.image }}" onerror="this.onerror=null;this.src='{% static 'images/products/movie.jpg' %}';" alt="products" style="width: 250px; height: 400px; display: block; margin: 0 auto;" />
                                     </a>
                                     <span class="tag danger font-body--md-400">sale 50%</span>
                                     <div class="cards-md__favs-list">

@@ -4,9 +4,12 @@ from django.contrib import messages
 from django.contrib.auth.forms import PasswordChangeForm
 from cart.cart import Cart
 
-from .form import UserEditForm, UserRegistrationForm, ProfileForm
-from main.models import Category
-from .models import Profile
+from account.form import UserEditForm, UserRegistrationForm, ProfileForm
+from account.models import Profile
+
+from main.models import Category, Movie
+
+from django.db.models import Count
 
 
 """Hàm view cho màn hình đăng kí tài khoản của người dùng """
@@ -73,6 +76,16 @@ def edit(request):
 
 
 def dashboard(request):
-    categories = Category.objects.all()
-    context = {"categories": categories}
+    # categories = Category.objects.all()[:12]
+    categories = Category.objects.annotate(num_movies=Count("movie")).order_by(
+        "-num_movies"
+    )[:12]
+    popular_movies = Movie.objects.filter().order_by("-popularity")[:15]
+    latest_movies = Movie.objects.filter().order_by("-released")[:10]
+
+    context = {
+        "categories": categories,
+        "popular_movies": popular_movies,
+        "latest_movies": latest_movies,
+    }
     return render(request, "account/dashboard.html", context=context)

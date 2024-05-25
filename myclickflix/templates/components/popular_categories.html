@@ -15,26 +15,19 @@
         </div>
         <!-- Desktop Versions -->
         <div class="popular-categories__wrapper">
-            {% for category in categories|slice:":6" %}
+            {% for category in categories %}
                 <a href="{% url 'search_movie'  %}?categories={{ category.id }}" class="cards-sm popular-categories__wrapper-item">
-                    <div class="cards-sm__img-wrapper">
-                        <img src="{% static 'images/categories/action.png' %}" alt="img-01" />
-                    </div>
                     <h5 class="font-body--xl-500">{{ category.name }}</h5>
                 </a>
             {% endfor %}
-
         </div>
 
         <!-- Mobile  Versions -->
         <div class="swiper-container popular-categories--slider">
             <div class="swiper-wrapper">
-                {% for category in categories|slice:":6" %}
+                {% for category in categories %}
                     <div class="swiper-slide">
                         <a href="{% url 'search_movie'  %}?categories={{ category.id }}" class="cards-sm popular-categories__wrapper-item">
-                            <div class="cards-sm__img-wrapper">
-                                <img src="{% static 'images/categories/action.png' %}" alt="img-01" />
-                            </div>
                             <h5 class="font-body--xl-500">{{ category.name }}</h5>
                         </a>
                     </div>

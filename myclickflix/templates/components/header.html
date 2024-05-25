@@ -5,26 +5,10 @@
             <div class="header__top-content">
                 <div class="header__top-left">
                     <p class="font-body--sm">
-                        ClickFlix. © 2021. All Rights Reserved.
+                        ClickFlix. © 2024. All Rights Reserved.
                     </p>
                 </div>
                 <div class="header__top-right">
-                    <div class="header__dropdown">
-                        <select id="selectbox1" class="header__dropdown-menu">
-                            <option value="pt_1">Eng</option>
-                            <option value="en_2">Bng</option>
-
-                            <option value="ch_4">cn</option>
-                            <option value="5">Urdu</option>
-                        </select>
-                        <select id="selectbox2" class="header__dropdown-menu">
-                            <option value="pt_1">USD</option>
-                            <option value="en_2">Tk</option>
-
-                            <option value="ch_4">yan</option>
-                            <option value="5">rup</option>
-                        </select>
-                    </div>
                     <div class="header__in">
                         <!-- TODO: add link -->
                         <a href="{% url 'login' %}">Sign in </a>
@@ -85,15 +69,6 @@
                     <li class="header__navigation-menu-link">
                         <a href="{% url 'search_movie' %}">Shop </a>
                     </li>
-                    <li class="header__navigation-menu-link">
-                        <a href="about.html">Blog </a>
-                    </li>
-                    <li class="header__navigation-menu-link">
-                        <a href="about.html">About us </a>
-                    </li>
-                    <li class="header__navigation-menu-link">
-                        <a href="contact.html">Contact us</a>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -135,27 +110,16 @@
                             Shop
                         </a>
                     </li>
-                    <li class="header__mobile-menu-item">
-                        <a href="#" class="header__mobile-menu-item-link">
-                            Blog
-                        </a>
-                    </li>
-                    <li class="header__mobile-menu-item">
-                        <a href="about.html" class="header__mobile-menu-item-link">About</a>
-                    </li>
-                    <li class="header__mobile-menu-item">
-                        <a href="contact.html" class="header__mobile-menu-item-link">Contacts</a>
-                    </li>
                 </ul>
             </div>
             <div class="header__mobile-bottom">
                 <div class="header__mobile-user">
                     <div class="header__mobile-user--img">
-                        <img src="{% static 'images/user/img-03.png' %}" alt="user" />
+                        <img src="{% static 'images/logo_4x3.png' %}" alt="user" />
                     </div>
                     <div class="header__mobile-user--info">
-                        <h2 class="font-body--lg-500">Dianne Russell</h2>
-                        <p class="font-body--md-400">dianne.russell@gmail.com</p>
+                        <h2 class="font-body--lg-500">ClickFlix</h2>
+                        <p class="font-body--md-400">clickflixofficial@gmail.com</p>
                     </div>
                 </div>
                 <div class="header__mobile-action d-none">

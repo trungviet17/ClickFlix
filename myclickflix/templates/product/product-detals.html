@@ -7,6 +7,7 @@
 <!-- Shopping Cart sidebar  start  -->
 {% include "components/cart_sidebar.html" %}
 <!-- Shopping Cart sidebar  end -->
+
 <!-- Header Section start -->
 {% if user.is_authenticated %}
 {% include "components/header_login.html" %}
@@ -14,6 +15,7 @@
 {% include "components/header.html" %}
 {% endif %}
 <!-- Header  Section start -->
+
 <!-- breedcrumb section start  -->
 <div class="section breedcrumb">
     <div class="breedcrumb__img-wrapper">
@@ -48,6 +50,7 @@
     </div>
 </div>
 <!-- breedcrumb section end   -->
+
 <!-- Products View Section Start  -->
 <section class="products section">
     <div class="container">
@@ -126,8 +129,7 @@
                             </li>
                         </ul>
                         <span class="dot">.</span>
-                        <h5 class="font-body--md-500">popularity: <span class="counting font-body--md-400">{{
-                                movie.popularity }}</span></h5>
+                        <h5 class="font-body--md-500">popularity: <span class="counting font-body--md-400">{{ movie.popularity }}</span></h5>
                     </div>
 
                     <div class="products__content-price">

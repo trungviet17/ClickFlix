@@ -414,19 +414,15 @@
                                 <div id="collapseFour" class="accordion-collapse shop-collapse collapse show" aria-labelledby="shop-item-accordion--four" data-bs-parent="#shop">
                                     <div class="accordion-body shop-body">
                                         <div class="popular-tags">
-                                            <a href="#" class="tag-btn">Healthy</a>
-                                            <a href="#" class="tag-btn active">Low Fat </a>
-                                            <a href="#" class="tag-btn">Vegetarian</a>
-                                            <a href="#" class="tag-btn">Kid Foods </a>
-                                            <a href="#" class="tag-btn">Vitamins</a>
-                                            <a href="#" class="tag-btn">Bread</a>
-                                            <a href="#" class="tag-btn">Meat</a>
-                                            <a href="#" class="tag-btn">Snacks</a>
-                                            <a href="#" class="tag-btn">Tiffin</a>
-                                            <a href="#" class="tag-btn">Launch</a>
-                                            <a href="#" class="tag-btn">Dinner</a>
-                                            <a href="#" class="tag-btn">breakfast</a>
-                                            <a href="#" class="tag-btn">Fruit</a>
+                                            <a href="{% url 'search_movie'  %}?categories=1" class="tag-btn">Action</a>
+                                            <a href="{% url 'search_movie'  %}?categories=2" class="tag-btn">Adventure </a>
+                                            <a href="{% url 'search_movie'  %}?categories=3" class="tag-btn">Animation </a>
+                                            <a href="{% url 'search_movie'  %}?categories=5" class="tag-btn">Crime</a>
+                                            <a href="{% url 'search_movie'  %}?categories=7" class="tag-btn">Drama </a>
+                                            <a href="{% url 'search_movie'  %}?categories=12" class="tag-btn">Horror</a>
+                                            <a href="{% url 'search_movie'  %}?categories=9" class="tag-btn">Fantasy</a>
+                                            <a href="{% url 'search_movie'  %}?categories=16" class="tag-btn">Romance</a>
+                                            <a href="{% url 'search_movie'  %}?categories=17" class="tag-btn">Science</a>
                                         </div>
                                     </div>
                                 </div>
@@ -444,14 +440,13 @@
                                         <a href="{% url 'movie_detail' movie_slug=movie.slug %}">
                                             <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{ movie.image }}" alt="products" style="width: 250px; height: 400px; display: block; margin: 0 auto;" />
                                         </a>
-                                        <span class="tag danger font-body--md-400">sale 50%</span>
-                                        <div class="cards-md__favs-list">
-                                            <span class="action-btn">
+                                        <!-- <div class="cards-md__favs-list"> -->
+                                            <!-- <span class="action-btn">
                                                 <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M9.9996 16.5451C-6.66672 7.3333 4.99993 -2.6667 9.9996 3.65668C14.9999 -2.6667 26.6666 7.3333 9.9996 16.5451Z" stroke="currentColor" stroke-width="1.5"></path>
                                                 </svg>
-                                            </span>
-                                            <span class="action-btn" data-bs-toggle="modal" data-bs-target="#productView">
+                                            </span> -->
+                                            <!-- <span class="action-btn" data-bs-toggle="modal" data-bs-target="#productView">
                                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path
                                                         d="M10 3.54102C3.75 3.54102 1.25 10.0001 1.25 10.0001C1.25 10.0001 3.75 16.4577 10 16.4577C16.25 16.4577 18.75 10.0001 18.75 10.0001C18.75 10.0001 16.25 3.54102 10 3.54102V3.54102Z"
@@ -468,15 +463,14 @@
                                                         stroke-linejoin="round"
                                                     ></path>
                                                 </svg>
-                                            </span>
-                                        </div>
+                                            </span> -->
+                                        <!-- </div> -->
                                     </div>
                                     <div class="cards-md__info d-flex justify-content-between align-items-center">
                                         <a href="{% url 'movie_detail' movie_slug=movie.slug %}" class="cards-md__info-left">
                                             <h6 class="font-body--md-400">{{ movie.title }}</h6>
                                             <div class="cards-md__info-price">
-                                                <span class="font-body--lg-500">$14.99</span>
-                                                <del class="font-body--lg-400">$ {{ movie.price }}</del>
+                                                <span class="font-body--lg-500">${{ movie.price }}</span>
                                             </div>
                                             <ul class="cards-md__info-rating d-flex">
                                                 <li>

@@ -235,13 +235,13 @@
                     <div class="col-lg-7">
                     <div class="dashboard__user-profile dashboard-card">
                         <div class="dashboard__user-profile-img">
-                        <img src="{% static 'images/user/img-07.png' %}" alt="userImg" />
+                        <img src="{% static 'images/user/user.jpg' %}" alt="userImg" />
                         </div>
                         <div class="dashboard__user-profile-info">
-                        <h5 class="font-body--xxl-500 name">Dianne Russell</h5>
+                        <h5 class="font-body--xxl-500 name">{{user.username}}</h5>
                         <p class="font-body--md-400 designation">Customer</p>
                         <a
-                            href="account-setting.html"
+                            href="{% url 'edit' %}"
                             class="edit font-body--lg-500"
                         >
                             Edit Profile
@@ -259,7 +259,7 @@
                         <h5
                             class="dashboard__user-billing-name font-body--xl-500"
                         >
-                            Dainne Russell
+                            <a>{{user.fist_name}} {{user.last_name}}</a>
                         </h5>
                         <p
                             class="
@@ -267,28 +267,19 @@
                             font-body--md-400
                             "
                         >
-                            4140 Parker Rd. Allentown, New Mexico 31134
+                            {{profile.address}}
                         </p>
                         <p
                             class="dashboard__user-billing-email font-body--lg-400"
                         >
-                            dainne.ressell@gmail.com
+                            {{user.email}}
                         </p>
                         <p
                             class="dashboard__user-billing-number font-body--lg-400"
                         >
-                            (671) 555-0110
+                            {{profile.phone}}
                         </p>
                         </div>
-                        <a
-                        href="account-setting.html"
-                        class="
-                            dashboard__user-billing-editaddress
-                            font-body--lg-500
-                        "
-                        >
-                        Edit address</a
-                        >
                     </div>
                     </div>
                 </div>

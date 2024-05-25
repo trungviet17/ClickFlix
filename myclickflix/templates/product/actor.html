@@ -31,14 +31,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{% url 'search_movie' %}">
                         ShopMovie
-                        <span> > </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        Movie
                         <span> > </span>
                     </a>
                 </li>
@@ -100,7 +94,6 @@
                                     alt="products"
                                     style="width: 250px; height: 400px; display: block; margin: 0 auto;" />
                             </a>
-                            <span class="tag danger font-body--md-400">sale 50%</span>
                             <div class="cards-md__favs-list">
                                 <span class="action-btn">
                                     <svg width="20" height="18" viewBox="0 0 20 18" fill="none"
@@ -128,10 +121,7 @@
                         <div class="cards-md__info d-flex justify-content-between align-items-center">
                             <a href="{% url 'movie_detail' movie_slug=movie.slug %}" class="cards-md__info-left">
                                 <h6 class="font-body--md-400">{{ movie.title }}</h6>
-                                <div class="cards-md__info-price">
-                                    <span class="font-body--lg-500">$48.00</span>
-                                    <del class="font-body--lg-400">$ {{ movie.price }}</del>
-                                </div>
+                                <p class="font-body--lg-400" style="color: black">${{ movie.price }} </p>
                                 <ul class="cards-md__info-rating d-flex">
                                     <li>
                                         <svg width="12" height="13" viewBox="0 0 12 13" fill="none"

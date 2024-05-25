@@ -38,7 +38,3 @@ class MovieFilterForm(forms.Form):
         widget=forms.CheckboxSelectMultiple,
         label="Categories",
     )
-
-
-class RechargeForm(forms.Form):
-    code = forms.CharField(label="Recharge Code", max_length=50)

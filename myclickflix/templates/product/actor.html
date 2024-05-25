@@ -91,7 +91,7 @@
         </div>
         <div class="swiper-container related-slider--one">
             <div class="swiper-wrapper">
-                {% for movie in recommendations %}
+                {% for movie in movies %}
                 <div class="swiper-slide">
                     <div class="cards-md cards-md--four w-100">
                         <div class="cards-md__img-wrapper">
@@ -195,7 +195,7 @@
         </div>
     </div>
 </section>
-<!-- Related Product Section   end  -->
+
 
 {% include "components/footer.html" %}
 <script type="text/javascript" src="{% static 'lib/js/jquery.min.js' %}"></script>

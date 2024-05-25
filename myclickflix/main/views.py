@@ -2,35 +2,35 @@ from django.http import HttpResponseNotFound
 from django.shortcuts import render
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
-from django.contrib import messages
 
 
 from main.models import Movie, Actor, Category
-from account.models import Profile
 from main.forms import MovieFilterForm
 from main.recommend import recommend
 from payment.models import PurchasedMovie
 
 
-def move_list(request):
+def search_movie(request):
     form = MovieFilterForm(request.GET)
     movies = Movie.objects.all().filter(available=True)
-
     if form.is_valid():
         if form.cleaned_data["title"]:
             movies = movies.filter(title__icontains=form.cleaned_data["title"])
         if form.cleaned_data["price_min"]:
-            movies = movies.filter(score_gte=form.cleaned_data["price_min"])
+            movies = movies.filter(price__gte=form.cleaned_data["price_min"])
         if form.cleaned_data["price_max"]:
-            movies = movies.filter(score_lte=form.cleaned_data["price_max"])
+            movies = movies.filter(price__lte=form.cleaned_data["price_max"])
         categories = form.cleaned_data["categories"]
         for category in categories:
             movies = movies.filter(categories=category)
-
-    paginator = Paginator(movies, 25)
+    paginator = Paginator(movies, 24)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
-    return render(request, "product/shop.html", {"form": form, "movies": page_obj})
+    return render(
+        request,
+        "product/shop.html",
+        {"form": form, "movies": page_obj, "numbers_movies": len(movies)},
+    )
 
 
 def movie_detail(request, movie_slug):
@@ -42,7 +42,7 @@ def movie_detail(request, movie_slug):
     categories = movie.categories.all()
     recommendations = recommend(movie.id)
     recommendations = Movie.objects.filter(id__in=recommendations)
-    if request.user.is_authenticated == None:
+    if not request.user.is_authenticated:
         is_purchased = False
     else:
         is_purchased = PurchasedMovie.objects.filter(
@@ -56,9 +56,8 @@ def movie_detail(request, movie_slug):
         "recommendations": recommendations,
         "is_purchased": is_purchased,
     }
-
     print(is_purchased)
-    return render(request, "product/product-detals.html", context=context)
+    return render(request, "product/product-details.html", context=context)
 
 
 def actor_detail(request, actor_slug):
@@ -83,7 +82,6 @@ def get_category(request):
 
 @login_required
 def your_movie_list(request):
-
     movies = PurchasedMovie.objects.filter(profile_id=request.user.profile.id)
     context = {"movies": movies}
     return render(request, "product/your-movie-list.html", context=context)

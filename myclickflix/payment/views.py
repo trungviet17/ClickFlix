@@ -11,7 +11,7 @@ from django.urls import reverse
 from decimal import Decimal
 import stripe
 
-# Create your views here.
+
 stripe.api_key = settings.STRIPE_SECRET_KEY
 stripe.api_version = settings.STRIPE_API_VERSION
 

@@ -42,12 +42,13 @@ def movie_detail(request, movie_slug):
     categories = movie.categories.all()
     recommendations = recommend(movie.id)
     recommendations = Movie.objects.filter(id__in=recommendations)
-    if not request.user.is_authenticated == None:
+    if request.user.is_authenticated == None:
         is_purchased = False
     else:
         is_purchased = PurchasedMovie.objects.filter(
             movie_id=movie.id, profile_id=request.user.profile.id
         ).exists()
+        print(1)
     context = {
         "movie": movie,
         "actors": actors,
@@ -78,3 +79,11 @@ def get_category(request):
     categories = Category.objects.all()
     context = {"categories": categories}
     return render(request, "product/category.html", context=context)
+
+
+@login_required
+def your_movie_list(request):
+
+    movies = PurchasedMovie.objects.filter(profile_id=request.user.profile.id)
+    context = {"movies": movies}
+    return render(request, "product/your-movie-list.html", context=context)
